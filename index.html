@@ -1,0 +1,1536 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes">
+<title>那与航优选</title>
+<style>:root{--g:#4a7c59;--gl:#7cb68e;--s:#8b7355;--bg:#faf8f3}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font:15px/1.6 -apple-system,sans-serif;width:100%;margin:0 auto;background:linear-gradient(180deg,#e8f0e3 0,#f5f0e8 30%,var(--bg) 100%);color:#3a3a3a}
+.top{text-align:center;padding:20px 16px 14px;background:linear-gradient(135deg,#5a8a64,var(--g));color:#fff;border-radius:0 0 20px 20px}
+.top h1{font-size:20px;font-weight:500}
+.top p{font-size:12px;opacity:.75;margin-top:2px}
+.btns{text-align:center;padding:8px}
+.btns button{background:#fff;border:1px solid var(--gl);color:var(--g);border-radius:8px;padding:8px 20px;font-size:13px;margin:2px;cursor:pointer}
+.btns button:active{background:#e8f5e9}
+.wave{padding:12px 12px 6px}
+.wave h2{font-size:15px;font-weight:500;padding:8px 12px;border-radius:10px;margin-bottom:10px}
+.w1 h2{background:#eaf4e8;color:#3d6b45;border-left:3px solid var(--gl)}
+.w2 h2{background:#faf0e6;color:#8b6914;border-left:3px solid #d4a853}
+
+/* Card */
+.card{position:relative;background:#fff;border-radius:12px;margin-bottom:10px;padding:12px 14px 10px;box-shadow:0 1px 3px rgba(0,0,0,.03);cursor:pointer;transition:box-shadow .15s;border-left:3px solid transparent}
+.card:active{box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card .toprow{display:flex;align-items:flex-start;gap:10px}
+.card .info{flex:1;min-width:0}
+.card .nm{font-size:14px;font-weight:600;line-height:1.4;color:#333}
+.card .nm-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.card .stars{font-size:14px;line-height:1;letter-spacing:1px;flex-shrink:0}
+.card .stars .s5{color:#c4883c}.card .stars .s4{color:#d4a853}.card .stars .s3{color:#8b7355}.card .stars .s2{color:#999}.card .stars .s1{color:#bbb}
+.card .sub-info{font-size:12px;color:#666;margin-top:3px}
+.card .stats{font-size:11.5px;color:#777;margin-top:5px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.card .stats .comm{color:#c4883c;font-weight:500}
+.card .stats .sale{color:#666}
+.card .meta{font-size:11px;color:#777;margin-top:3px;display:flex;align-items:center;gap:6px}
+.card .meta .sup{color:var(--g)}
+.tg{font-size:10px;padding:1px 5px;border-radius:3px;margin-right:2px}
+.launch-warn{font-size:10px;padding:2px 6px;border-radius:3px;background:#fff3e0;color:#e65100;border:1px solid #ffcc80;margin-left:4px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.tg-h{background:#fff0e6;color:#d4720a}.tg-m{background:#e8f5e9;color:#2e7d32}
+.pri{font-size:16px;font-weight:700;text-align:right;flex-shrink:0;color:#333;line-height:1.3}
+
+/* Plant detail row */
+.card .plant-detail{margin-top:4px;font-size:11px;color:#777;line-height:1.5;display:flex;flex-wrap:wrap;gap:4px 10px}
+.card .plant-detail .pd-item{display:inline-flex;align-items:center;gap:2px;white-space:nowrap}
+.card .plant-detail .pd-warn{color:#d4720a;font-weight:500}
+
+/* Body ref bar */
+.body-ref{text-align:center;padding:6px 12px;margin:8px 10px 0;background:rgba(139,115,85,.08);border-radius:8px;font-size:11px;color:var(--s);border:1px dashed rgba(139,115,85,.2)}
+
+/* Copy row */
+.card .copy-row{margin-top:8px;padding-top:8px;border-top:1px dashed #eee;display:flex;align-items:center;gap:6px}
+.card .copy-txt{flex:1;font-size:12px;color:#555;line-height:1.5;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical}
+.card .copy-btn{flex-shrink:0;background:var(--gl);color:#fff;border:none;border-radius:5px;padding:4px 10px;font-size:11px;cursor:pointer;white-space:nowrap}
+.card .copy-btn:active{background:#5a8a64}
+.card .copy-btn.copied{background:#c4883c}
+
+/* Category color system */
+.cat{font-size:13px;font-weight:500;padding:8px 6px 4px}
+.cat-plant{color:#3d6b45;border-left:3px solid #4a7c59;margin-left:-3px}
+.cat-food{color:#d4720a;border-left:3px solid #e8920d}
+.cat-fashion{color:#7c3aed;border-left:3px solid #8b5cf6}
+.card.cat-plant{border-left-color:#4a7c59}
+.card.cat-food{border-left-color:#e8920d}
+.card.cat-fashion{border-left-color:#8b5cf6}
+
+/* Done/expanded states */
+.done .card-body{display:none}
+.done .card-preview{display:flex}
+.done{background:#f0f0f0;padding:4px 10px;opacity:.92}
+.done .pv-nm{font-size:13px;color:#777;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.done .pv-pri{font-size:13px;color:#999;flex-shrink:0}
+.done .pv-stars{font-size:11px;color:#bbb;flex-shrink:0;letter-spacing:1px}
+
+.expanded .card-body{display:block}
+.expanded .card-preview{display:none}
+.expanded{background:#f0f0f0;opacity:.92}
+.expanded .pri{color:#999}
+.expanded .nm{color:#777}
+.expanded .stats{color:#bbb}
+.expanded .stats .comm{color:#c4a06c}
+.expanded .copy-txt{color:#aaa}
+.expanded::after{content:"✓ 已开团";display:block;text-align:right;font-size:11px;color:#aaa;font-weight:500;margin-top:6px}
+
+/* Card preview bar: 左=产品信息(点此展开) 右=开团按钮(复制+跳转) */
+.card-preview{display:none;justify-content:space-between;align-items:center;gap:6px;width:100%}
+.pv-info{display:flex;align-items:center;gap:8px;flex:1;min-width:0;cursor:pointer;padding:2px 0}
+.pv-info:active{opacity:.7}
+
+/* 开团按钮 — 绿色醒目，不会被误触 */
+.pv-action{flex-shrink:0;background:var(--g);color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .15s}
+.pv-action:active{background:#3d5c45}
+
+/* Collapse hint in expanded card */
+.collapse-hint{text-align:center;font-size:11px;color:#bbb;padding-top:6px;cursor:pointer;user-select:none}
+.collapse-hint:hover{color:#999}
+.pos .card{box-shadow:0 0 0 2px var(--gl)}
+
+/* Lock */
+#lock{text-align:center;padding:80px 16px}
+#lock .bx{background:#fff;border-radius:16px;padding:32px 20px;max-width:280px;margin:0 auto;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+#lock h2{font-size:15px;color:var(--g);margin-bottom:14px}
+#lock input{border:1.5px solid #ddd;border-radius:8px;padding:10px 12px;font-size:14px;width:100%;text-align:center}
+#lock input:focus{border-color:var(--gl);outline:none}
+#lock .go{display:block;margin:12px auto 0;background:var(--g);color:#fff;border:none;border-radius:8px;padding:10px 0;font-size:14px;width:100%;cursor:pointer}
+#lock .go:active{background:#3d6b45}
+#lock .err{color:#d4720a;font-size:12px;margin-top:8px;display:none}
+#lock .rem{font-size:11px;color:#999;margin-top:8px}
+
+/* Toast */
+#toast{position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.75);color:#fff;padding:8px 18px;border-radius:20px;font-size:12px;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none}
+
+/* === 自动化概览 === */
+.overview{background:#fff;border-radius:12px;padding:14px 16px 12px;margin:0 10px 10px;box-shadow:0 1px 3px rgba(0,0,0,.03);font-size:12px;line-height:1.6}
+.ov-header{font-weight:500;color:var(--g);margin-bottom:2px}
+.ov-summary{color:#666;font-size:11px;margin-bottom:10px}
+.ov-cat{margin-bottom:8px;padding:6px 8px;background:#fafafa;border-radius:8px;cursor:pointer}
+.ov-cat-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.ov-cat-name{font-weight:600;font-size:13px}
+.ov-cat-arrow{color:#bbb;font-size:14px;transition:transform .2s;flex-shrink:0;margin-left:8px}
+.ov-cat.open .ov-cat-arrow{transform:rotate(90deg)}
+.ov-cat-stats{font-size:11px;color:#888}
+.ov-bar-wrap{height:6px;background:#e8e8e8;border-radius:3px;overflow:hidden;margin-bottom:4px}
+.ov-bar{height:100%;border-radius:3px}
+.ov-bar-0{background:#4a7c59}.ov-bar-1{background:#e8920d}.ov-bar-2{background:#8b5cf6}
+.ov-detail{display:none;margin-top:4px;font-size:11px;color:#666;line-height:1.8}
+.ov-cat.open .ov-detail{display:block}
+.ov-sub-name{font-weight:500;color:#555;min-width:60px;display:inline-block}
+.ov-pushed{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:4px}
+.ov-sub-tag{display:inline-block;background:#e8f5e9;color:#2e7d32;padding:1px 6px;border-radius:8px;font-size:10px}
+.ov-sub-tag.active{background:#c8e6c9;font-weight:500}
+.ov-unpushed-toggle{cursor:pointer;color:#999;font-size:10px;margin-top:2px;user-select:none}
+.ov-unpushed-toggle:hover{color:#666}
+.ov-unpushed{display:flex;flex-wrap:wrap;gap:3px;margin-top:3px}
+.ov-unpushed .ov-sub-tag{background:#f5f5f5;color:#999}
+.ov-footer{font-size:11px;color:#999;margin-top:8px;padding-top:8px;border-top:1px solid #eee}
+
+/* === Tabs === */
+.tabs{display:flex;gap:0;margin:0 10px 6px}
+.tab-btn{flex:1;text-align:center;padding:8px 0;font-size:13px;font-weight:500;border:none;cursor:pointer;background:#f0f0f0;color:#999;border-bottom:2px solid transparent;transition:all .15s}
+.tab-btn:first-child{border-radius:8px 0 0 8px}
+.tab-btn:last-child{border-radius:0 8px 8px 0}
+.tab-btn.active{background:#fff;color:var(--g);border-bottom-color:var(--g)}
+.tab-count{font-size:10px;margin-left:4px;opacity:.6}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* Reserve card */
+.reserve-card.card{cursor:pointer;opacity:.95}
+.reserve-card.card:active{opacity:1}
+.reserve-card .score-badge{display:inline-block;background:#f0f0f0;color:#888;font-size:11px;padding:1px 6px;border-radius:3px;margin-left:6px}
+
+/* Footer */
+#main{padding-bottom:60px}
+.footer{text-align:center;font-size:11px;color:#bbb;padding:12px 0 20px}
+
+/* Responsive */
+@media(min-width:600px){
+  body{max-width:680px;font-size:15px}
+  .top h1{font-size:22px}
+  .wave{padding:16px 20px 10px}
+  .card{padding:14px 18px 12px;margin-bottom:12px}
+  .card .nm{font-size:15px}
+  .pri{font-size:18px}
+  .card .copy-txt{font-size:13px}
+  .done{padding:8px 18px}
+}
+@media(min-width:900px){
+  body{max-width:780px}
+}</style>
+</head>
+<body>
+
+
+<div class="top">
+  <h1>🌿 那与航 · 今日优选</h1>
+  <p>2026-06-07 开团分享</p>
+</div>
+
+
+<div class="body-ref">👗 📏 身材参考：159cm/103斤 · S码</div>
+
+
+<div class="btns">
+  <button onclick="goLast()">📍 上次位置</button>
+  <button onclick="resetDone()">🔄 重置进度</button>
+</div>
+
+
+<div id="lock">
+  <div class="bx">
+    <h2>🔒 输入密码</h2>
+    <input id="pw" type="password" placeholder="····">
+    <button class="go" onclick="checkPw()">进入</button>
+    <p class="err" id="err">密码错误</p>
+    <p class="rem">✨ 7天内免输密码</p>
+  </div>
+</div>
+
+
+<div id="main" style="display:none">
+
+
+<div class="overview">
+  <div class="ov-header">📊 自动化概览 · 抓取 2026-06-06 22:52</div>
+  <div class="ov-summary">选品 377 → 去重 12 → 推送 15 · 去重率 3.1%</div>
+
+  
+  <div class="ov-cat" onclick="toggleOvCat(this)">
+    <div class="ov-cat-row">
+      <span class="ov-cat-name">🌿 园艺</span>
+      <span class="ov-cat-stats">236拉取 · 236通过 · 5推送 · 100.0%</span>
+      <span class="ov-cat-arrow">&#9654;</span>
+    </div>
+    <div class="ov-bar-wrap">
+      <div class="ov-bar ov-bar-0" style="width:100.0%"></div>
+    </div>
+    <div class="ov-detail">
+      
+      
+      
+      
+      
+        <div class="ov-pushed">
+          
+          <span class="ov-sub-tag active">百子莲 1</span>
+          
+          <span class="ov-sub-tag active">铁线莲 1</span>
+          
+          <span class="ov-sub-tag active">龟背竹 1</span>
+          
+        </div>
+      
+      
+      
+      
+        <div class="ov-unpushed-toggle" onclick="toggleUnpushed(this)">
+          预备池 · 36 个品类 232 品 ▼
+        </div>
+        <div class="ov-unpushed" style="display:none">
+          
+          <span class="ov-sub-tag">其他 137品</span>
+          
+          <span class="ov-sub-tag">百合 13品</span>
+          
+          <span class="ov-sub-tag">朱顶红 8品</span>
+          
+          <span class="ov-sub-tag">绣球 7品</span>
+          
+          <span class="ov-sub-tag">盆器 7品</span>
+          
+          <span class="ov-sub-tag">肥料 7品</span>
+          
+          <span class="ov-sub-tag">菊花 6品</span>
+          
+          <span class="ov-sub-tag">枫树 4品</span>
+          
+          <span class="ov-sub-tag">彩叶芋 3品</span>
+          
+          <span class="ov-sub-tag">长春花 3品</span>
+          
+          <span class="ov-sub-tag">无花果 3品</span>
+          
+          <span class="ov-sub-tag">茉莉 3品</span>
+          
+          <span class="ov-sub-tag">大丽花 2品</span>
+          
+          <span class="ov-sub-tag">松果菊 2品</span>
+          
+          <span class="ov-sub-tag">洋水仙 2品</span>
+          
+          <span class="ov-sub-tag">玉簪 2品</span>
+          
+          <span class="ov-sub-tag">蝴蝶兰 2品</span>
+          
+          <span class="ov-sub-tag">鸢尾 2品</span>
+          
+          <span class="ov-sub-tag">月季 2品</span>
+          
+          <span class="ov-sub-tag">介质 1品</span>
+          
+          <span class="ov-sub-tag">风铃草 1品</span>
+          
+          <span class="ov-sub-tag">蕨类 1品</span>
+          
+          <span class="ov-sub-tag">合欢 1品</span>
+          
+          <span class="ov-sub-tag">猴耳环 1品</span>
+          
+          <span class="ov-sub-tag">树莓 1品</span>
+          
+          <span class="ov-sub-tag">剑兰 1品</span>
+          
+          <span class="ov-sub-tag">蓝雪花 1品</span>
+          
+          <span class="ov-sub-tag">药剂 1品</span>
+          
+          <span class="ov-sub-tag">薰衣草 1品</span>
+          
+          <span class="ov-sub-tag">牡荆 1品</span>
+          
+          <span class="ov-sub-tag">郁金香 1品</span>
+          
+          <span class="ov-sub-tag">芍药 1品</span>
+          
+          <span class="ov-sub-tag">菖蒲 1品</span>
+          
+          <span class="ov-sub-tag">薄荷 1品</span>
+          
+          <span class="ov-sub-tag">加拿大紫荆 1品</span>
+          
+          <span class="ov-sub-tag">向日葵 1品</span>
+          
+        </div>
+      
+    </div>
+  </div>
+  
+  <div class="ov-cat" onclick="toggleOvCat(this)">
+    <div class="ov-cat-row">
+      <span class="ov-cat-name">🍑 水果+零食</span>
+      <span class="ov-cat-stats">11拉取 · 11通过 · 6推送 · 100.0%</span>
+      <span class="ov-cat-arrow">&#9654;</span>
+    </div>
+    <div class="ov-bar-wrap">
+      <div class="ov-bar ov-bar-1" style="width:100.0%"></div>
+    </div>
+    <div class="ov-detail">
+      
+      
+      
+      
+      
+        <div class="ov-pushed">
+          
+          <span class="ov-sub-tag active">水果 2</span>
+          
+          <span class="ov-sub-tag active">调味 2</span>
+          
+          <span class="ov-sub-tag active">禽蛋 1</span>
+          
+        </div>
+      
+      
+      
+      
+        <div class="ov-unpushed-toggle" onclick="toggleUnpushed(this)">
+          预备池 · 3 个品类 5 品 ▼
+        </div>
+        <div class="ov-unpushed" style="display:none">
+          
+          <span class="ov-sub-tag">其他 2品</span>
+          
+          <span class="ov-sub-tag">海鲜 2品</span>
+          
+          <span class="ov-sub-tag">糕点 1品</span>
+          
+        </div>
+      
+    </div>
+  </div>
+  
+  <div class="ov-cat" onclick="toggleOvCat(this)">
+    <div class="ov-cat-row">
+      <span class="ov-cat-name">👗 穿搭</span>
+      <span class="ov-cat-stats">130拉取 · 130通过 · 4推送 · 100.0%</span>
+      <span class="ov-cat-arrow">&#9654;</span>
+    </div>
+    <div class="ov-bar-wrap">
+      <div class="ov-bar ov-bar-2" style="width:100.0%"></div>
+    </div>
+    <div class="ov-detail">
+      
+      
+      
+      
+      
+        <div class="ov-pushed">
+          
+          <span class="ov-sub-tag active">裤装 2</span>
+          
+          <span class="ov-sub-tag active">配饰 1</span>
+          
+          <span class="ov-sub-tag active">鞋履 1</span>
+          
+        </div>
+      
+      
+      
+      
+        <div class="ov-unpushed-toggle" onclick="toggleUnpushed(this)">
+          预备池 · 5 个品类 68 品 ▼
+        </div>
+        <div class="ov-unpushed" style="display:none">
+          
+          <span class="ov-sub-tag">上衣 38品</span>
+          
+          <span class="ov-sub-tag">裙装 12品</span>
+          
+          <span class="ov-sub-tag">其他 11品</span>
+          
+          <span class="ov-sub-tag">日化 5品</span>
+          
+          <span class="ov-sub-tag">内衣 2品</span>
+          
+        </div>
+      
+    </div>
+  </div>
+  
+
+  <div class="ov-footer">
+    供应商 77个 · 重叠度 56.0%（28品多选品共供）
+    <br>TOP3：圈圈植物 · 涛哥一手货源 · ·大橙子
+  </div>
+</div>
+
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('main-tab')">📤 今日主推<span class="tab-count">15</span></button>
+  <button class="tab-btn" onclick="switchTab('reserve-tab')">🗂 预备役<span class="tab-count">7</span></button>
+</div>
+
+
+<div id="main-tab" class="tab-content active">
+
+
+
+
+  
+    <div class="cat cat-plant">🌿 园艺</div>
+    
+  
+
+  <div class="card cat-plant" id="r494171" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3Da906d5d1c3c7e76c81c8a684e944541f830a54f51a77122087c1237bed8f6c4a%26inviteUid%3D158486507%26actId%3D2606031618576601%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🌿 百子莲 黑杰克，¥13.8｜花园轻松养&amp;#10;🧊不需春化 · 封闭阳台✅ · 开放阳台✅ · 露台✅ · 花园✅ · ❄️耐-10℃ · ☀️耐热越晒越欢">
+      <div class="card-body" onclick="event.stopPropagation();collapseCard(this.parentElement)">
+        <div class="toprow">
+          <div class="info">
+            <div class="nm-row">
+              <span class="nm">【百子莲】百子莲 黑杰克</span>
+              <span class="stars"><span class="s5">★★★★★</span></span>
+            </div>
+            <div class="sub-info">百子莲 百子莲·黑杰克 · ¥13.8</div>
+            <div class="stats">
+              <span class="comm">💰 佣金 18.0%</span>
+              <span class="sale">📦 196人帮卖</span>
+            </div>
+            <div class="meta">
+              <span class="tg tg-m">利</span>
+              <span class="sup">多洛库优选（dlk）</span>
+              
+              
+            </div>
+            <div class="plant-detail"><span class="pd-item">🌡️15-35℃</span><span class="pd-item">❄️耐-10℃</span><span class="pd-item">封闭阳台🉑</span><span class="pd-item">🏡大大种过</span></div>
+          </div>
+          <div class="pri">¥13.8</div>
+        </div>
+        <div class="copy-row">
+          <span class="copy-txt">🌿 百子莲 黑杰克，¥13.8 · 🌡️15-35℃ · 封闭阳台✅ · 开放阳台✅ · 露台✅ · 花园✅</span>
+          <button class="copy-btn" onclick="event.stopPropagation();copyText(this,'🌿 百子莲 黑杰克，¥13.8｜花园轻松养\n🧊不需春化 · 封闭阳台✅ · 开放阳台✅ · 露台✅ · 花园✅ · ❄️耐-10℃ · ☀️耐热越晒越欢')">📋 复制</button>
+        </div>
+        <div class="collapse-hint" onclick="event.stopPropagation();collapseCard(this.parentElement.parentElement)">▲ 收起</div>
+      </div>
+      <div class="card-preview">
+        <span class="pv-info" onclick="event.stopPropagation();expandCard(this.parentElement.parentElement)">
+          <span class="pv-nm">【百子莲】百子莲 黑杰克</span>
+          <span class="pv-stars">★★★★★</span>
+          <span class="pv-pri">¥13.8</span>
+        </span>
+        <button class="pv-action" onclick="event.stopPropagation();actionCard(this.parentElement.parentElement)">📋 开团</button>
+      </div>
+    </div>
+  
+  
+
+  <div class="card cat-plant" id="r231571" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3D33c83acdff38f1af9cd3b47312c35e74ef0bccc432a7a43e80eb372512fb6306%26inviteUid%3D158486507%26actId%3D2606060449494547%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🌿 新品·铁线莲“哈库里.奥尔加”，¥38.6｜花园轻松养&amp;#10;🧊不需春化 · 封闭阳台✅ · 开放阳台✅ · 露台✅ · 花园✅ · ❄️耐-15℃ · ☀️夏天根部需遮阴">
+      <div class="card-body" onclick="event.stopPropagation();collapseCard(this.parentElement)">
+        <div class="toprow">
+          <div class="info">
+            <div class="nm-row">
+              <span class="nm">【铁线莲】新品·铁线莲“哈库里.奥尔加”</span>
+              <span class="stars"><span class="s5">★★★★★</span></span>
+            </div>
+            
+            <div class="stats">
+              <span class="comm">💰 佣金 18.0%</span>
+              <span class="sale">📦 92人帮卖</span>
+            </div>
+            <div class="meta">
+              <span class="tg tg-m">利</span>
+              <span class="sup">圈圈植物</span>
+              
+              
+            </div>
+            <div class="plant-detail"><span class="pd-item">🌡️10-30℃</span><span class="pd-item">❄️耐-15℃</span><span class="pd-item">封闭阳台🉑</span><span class="pd-item">🏡大大种过</span></div>
+          </div>
+          <div class="pri">¥38.6</div>
+        </div>
+        <div class="copy-row">
+          <span class="copy-txt">🌿 新品·铁线莲“哈库里.奥尔加”，¥38.6 · 🌡️10-30℃ · 封闭阳台✅ · 开放阳台✅ · 露台✅ · 花园✅</span>
+          <button class="copy-btn" onclick="event.stopPropagation();copyText(this,'🌿 新品·铁线莲“哈库里.奥尔加”，¥38.6｜花园轻松养\n🧊不需春化 · 封闭阳台✅ · 开放阳台✅ · 露台✅ · 花园✅ · ❄️耐-15℃ · ☀️夏天根部需遮阴')">📋 复制</button>
+        </div>
+        <div class="collapse-hint" onclick="event.stopPropagation();collapseCard(this.parentElement.parentElement)">▲ 收起</div>
+      </div>
+      <div class="card-preview">
+        <span class="pv-info" onclick="event.stopPropagation();expandCard(this.parentElement.parentElement)">
+          <span class="pv-nm">【铁线莲】新品·铁线莲“哈库里.奥尔加”</span>
+          <span class="pv-stars">★★★★★</span>
+          <span class="pv-pri">¥38.6</span>
+        </span>
+        <button class="pv-action" onclick="event.stopPropagation();actionCard(this.parentElement.parentElement)">📋 开团</button>
+      </div>
+    </div>
+  
+  
+
+  <div class="card cat-plant" id="r989636" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3Db5755a944eceb8a3db348d6de25d7adbec558f1e4a53250a7ae5384071379712%26inviteUid%3D158486507%26actId%3D2606051016937896%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🌿 洒金龟背竹【已开背】，¥29.8&amp;#10;👑已开背 · 洒金龟背竹">
+      <div class="card-body" onclick="event.stopPropagation();collapseCard(this.parentElement)">
+        <div class="toprow">
+          <div class="info">
+            <div class="nm-row">
+              <span class="nm">【龟背竹】洒金龟背竹【已开背】</span>
+              <span class="stars"><span class="s5">★★★★★</span></span>
+            </div>
+            <div class="sub-info">龟背竹 👑已开背 · 洒金龟背竹 · ¥29.8</div>
+            <div class="stats">
+              <span class="comm">💰 佣金 18.0%</span>
+              <span class="sale">📦 144人帮卖</span>
+            </div>
+            <div class="meta">
+              <span class="tg tg-m">利</span>
+              <span class="sup">圈圈植物</span>
+              
+              
+            </div>
+            
+          </div>
+          <div class="pri">¥29.8</div>
+        </div>
+        <div class="copy-row">
+          <span class="copy-txt">🌿 洒金龟背竹【已开背】，¥29.8</span>
+          <button class="copy-btn" onclick="event.stopPropagation();copyText(this,'🌿 洒金龟背竹【已开背】，¥29.8\n👑已开背 · 洒金龟背竹')">📋 复制</button>
+        </div>
+        <div class="collapse-hint" onclick="event.stopPropagation();collapseCard(this.parentElement.parentElement)">▲ 收起</div>
+      </div>
+      <div class="card-preview">
+        <span class="pv-info" onclick="event.stopPropagation();expandCard(this.parentElement.parentElement)">
+          <span class="pv-nm">【龟背竹】洒金龟背竹【已开背】</span>
+          <span class="pv-stars">★★★★★</span>
+          <span class="pv-pri">¥29.8</span>
+        </span>
+        <button class="pv-action" onclick="event.stopPropagation();actionCard(this.parentElement.parentElement)">📋 开团</button>
+      </div>
+    </div>
+  
+  
+
+  <div class="card cat-plant" id="r429174" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3D129f919d5827bfa56b62dd84cd2f237184d27f0aa293c215155e202127610782%26inviteUid%3D158486507%26actId%3D2606031819005319%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🌿 榨菜鲜丝（原味）20袋，¥36.8">
+      <div class="card-body" onclick="event.stopPropagation();collapseCard(this.parentElement)">
+        <div class="toprow">
+          <div class="info">
+            <div class="nm-row">
+              <span class="nm">榨菜鲜丝（原味）20袋</span>
+              <span class="stars"><span class="s4">★★★★☆</span></span>
+            </div>
+            <div class="sub-info"> 20袋 · ¥36.8</div>
+            <div class="stats">
+              <span class="comm">💰 佣金 17.0%</span>
+              <span class="sale">📦 955人帮卖</span>
+            </div>
+            <div class="meta">
+              <span class="tg tg-h">热</span>
+              <span class="sup">云爸严选</span>
+              
+              
+            </div>
+            
+          </div>
+          <div class="pri">¥36.8</div>
+        </div>
+        <div class="copy-row">
+          <span class="copy-txt">🌿 榨菜鲜丝（原味）20袋，¥36.8</span>
+          <button class="copy-btn" onclick="event.stopPropagation();copyText(this,'🌿 榨菜鲜丝（原味）20袋，¥36.8')">📋 复制</button>
+        </div>
+        <div class="collapse-hint" onclick="event.stopPropagation();collapseCard(this.parentElement.parentElement)">▲ 收起</div>
+      </div>
+      <div class="card-preview">
+        <span class="pv-info" onclick="event.stopPropagation();expandCard(this.parentElement.parentElement)">
+          <span class="pv-nm">榨菜鲜丝（原味）20袋</span>
+          <span class="pv-stars">★★★★☆</span>
+          <span class="pv-pri">¥36.8</span>
+        </span>
+        <button class="pv-action" onclick="event.stopPropagation();actionCard(this.parentElement.parentElement)">📋 开团</button>
+      </div>
+    </div>
+  
+  
+
+  <div class="card cat-plant" id="r428259" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3D7507b236f532092094c3f6b4e565c8646ff621f6b192a04520a791a252691d54%26inviteUid%3D158486507%26actId%3D2606031821158583%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🌿 陕西黄芪 100g，¥10.0-88.0&amp;#10;限量">
+      <div class="card-body" onclick="event.stopPropagation();collapseCard(this.parentElement)">
+        <div class="toprow">
+          <div class="info">
+            <div class="nm-row">
+              <span class="nm">陕西黄芪 100g</span>
+              <span class="stars"><span class="s4">★★★★☆</span></span>
+            </div>
+            <div class="sub-info"> 限量 · ¥10.0-88.0</div>
+            <div class="stats">
+              <span class="comm">💰 佣金 19.3%</span>
+              <span class="sale">📦 795人帮卖</span>
+            </div>
+            <div class="meta">
+              <span class="tg tg-h">热</span>
+              <span class="sup">云爸严选</span>
+              
+              
+            </div>
+            
+          </div>
+          <div class="pri">¥10.0-88.0</div>
+        </div>
+        <div class="copy-row">
+          <span class="copy-txt">🌿 陕西黄芪 100g，¥10.0-88.0</span>
+          <button class="copy-btn" onclick="event.stopPropagation();copyText(this,'🌿 陕西黄芪 100g，¥10.0-88.0\n限量')">📋 复制</button>
+        </div>
+        <div class="collapse-hint" onclick="event.stopPropagation();collapseCard(this.parentElement.parentElement)">▲ 收起</div>
+      </div>
+      <div class="card-preview">
+        <span class="pv-info" onclick="event.stopPropagation();expandCard(this.parentElement.parentElement)">
+          <span class="pv-nm">陕西黄芪 100g</span>
+          <span class="pv-stars">★★★★☆</span>
+          <span class="pv-pri">¥10.0-88.0</span>
+        </span>
+        <button class="pv-action" onclick="event.stopPropagation();actionCard(this.parentElement.parentElement)">📋 开团</button>
+      </div>
+    </div>
+  
+  
+    <div class="cat cat-food">🍑 水果+零食</div>
+    
+  
+
+  <div class="card cat-food" id="r968301" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3D80309bdbf3abc973f36948910ba9dc4f4aa111b907eec9e832e5342259440aa2%26inviteUid%3D158486507%26actId%3D2508012462441234%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🍑 【20枚礼盒装】钦海琼 咸海鸭蛋，¥19.9-58.0&amp;#10;🍑 精选">
+      <div class="card-body" onclick="event.stopPropagation();collapseCard(this.parentElement)">
+        <div class="toprow">
+          <div class="info">
+            <div class="nm-row">
+              <span class="nm">【水果】【20枚礼盒装】钦海琼 咸海鸭蛋</span>
+              <span class="stars"><span class="s5">★★★★★</span></span>
+            </div>
+            <div class="sub-info">水果 钦海琼•海咸鸭蛋 · ¥19.9-58.0</div>
+            <div class="stats">
+              <span class="comm">💰 佣金 29.4%</span>
+              <span class="sale">📦 1214人已售</span>
+            </div>
+            <div class="meta">
+              <span class="tg tg-h">热</span>
+              <span class="sup">明星品牌馆</span>
+              
+              
+            </div>
+            
+          </div>
+          <div class="pri">¥19.9-58.0</div>
+        </div>
+        <div class="copy-row">
+          <span class="copy-txt">🍑 【20枚礼盒装】钦海琼 咸海鸭蛋，¥19.9-58.0</span>
+          <button class="copy-btn" onclick="event.stopPropagation();copyText(this,'🍑 【20枚礼盒装】钦海琼 咸海鸭蛋，¥19.9-58.0\n🍑 精选')">📋 复制</button>
+        </div>
+        <div class="collapse-hint" onclick="event.stopPropagation();collapseCard(this.parentElement.parentElement)">▲ 收起</div>
+      </div>
+      <div class="card-preview">
+        <span class="pv-info" onclick="event.stopPropagation();expandCard(this.parentElement.parentElement)">
+          <span class="pv-nm">【水果】【20枚礼盒装】钦海琼 咸海鸭蛋</span>
+          <span class="pv-stars">★★★★★</span>
+          <span class="pv-pri">¥19.9-58.0</span>
+        </span>
+        <button class="pv-action" onclick="event.stopPropagation();actionCard(this.parentElement.parentElement)">📋 开团</button>
+      </div>
+    </div>
+  
+  
+
+  <div class="card cat-food" id="r396327" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3Dc66b4ec7786a717bff79a8619562d4413187487396d7271cc338cb4ad5d123a4%26inviteUid%3D158486507%26actId%3D2606041501416064%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🍑 HPP羽衣甘蓝，¥9.9-59.9&amp;#10;😋 甜糯可口，颗粒饱满，有机认证吃得放心">
+      <div class="card-body" onclick="event.stopPropagation();collapseCard(this.parentElement)">
+        <div class="toprow">
+          <div class="info">
+            <div class="nm-row">
+              <span class="nm">【水果】HPP羽衣甘蓝</span>
+              <span class="stars"><span class="s5">★★★★★</span></span>
+            </div>
+            <div class="sub-info">水果 赞漾果汁系列 · ¥9.9-59.9</div>
+            <div class="stats">
+              <span class="comm">💰 佣金 23.8%</span>
+              <span class="sale">📦 106人帮卖</span>
+            </div>
+            <div class="meta">
+              <span class="tg tg-m">利</span>
+              <span class="sup">明星品牌馆</span>
+              
+              
+            </div>
+            
+          </div>
+          <div class="pri">¥9.9-59.9</div>
+        </div>
+        <div class="copy-row">
+          <span class="copy-txt">🍑 HPP羽衣甘蓝，¥9.9-59.9</span>
+          <button class="copy-btn" onclick="event.stopPropagation();copyText(this,'🍑 HPP羽衣甘蓝，¥9.9-59.9\n😋 甜糯可口，颗粒饱满，有机认证吃得放心')">📋 复制</button>
+        </div>
+        <div class="collapse-hint" onclick="event.stopPropagation();collapseCard(this.parentElement.parentElement)">▲ 收起</div>
+      </div>
+      <div class="card-preview">
+        <span class="pv-info" onclick="event.stopPropagation();expandCard(this.parentElement.parentElement)">
+          <span class="pv-nm">【水果】HPP羽衣甘蓝</span>
+          <span class="pv-stars">★★★★★</span>
+          <span class="pv-pri">¥9.9-59.9</span>
+        </span>
+        <button class="pv-action" onclick="event.stopPropagation();actionCard(this.parentElement.parentElement)">📋 开团</button>
+      </div>
+    </div>
+  
+  
+
+  <div class="card cat-food" id="r913085" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3Dc64edb06cefdd656d63b688266d0b698d98acfc71b228753454a50dce8ca37b7%26inviteUid%3D158486507%26actId%3D2606031818652059%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🍑 红心蜜薯-小果-4.5斤普通装，¥35.8&amp;#10;🍑 5斤">
+      <div class="card-body" onclick="event.stopPropagation();collapseCard(this.parentElement)">
+        <div class="toprow">
+          <div class="info">
+            <div class="nm-row">
+              <span class="nm">红心蜜薯-小果-4.5斤普通装</span>
+              <span class="stars"><span class="s5">★★★★★</span></span>
+            </div>
+            
+            <div class="stats">
+              <span class="comm">💰 佣金 23.0%</span>
+              <span class="sale">📦 751人帮卖</span>
+            </div>
+            <div class="meta">
+              <span class="tg tg-m">利</span>
+              <span class="sup">云爸严选</span>
+              
+              
+            </div>
+            
+          </div>
+          <div class="pri">¥35.8</div>
+        </div>
+        <div class="copy-row">
+          <span class="copy-txt">🍑 红心蜜薯-小果-4.5斤普通装，¥35.8</span>
+          <button class="copy-btn" onclick="event.stopPropagation();copyText(this,'🍑 红心蜜薯-小果-4.5斤普通装，¥35.8\n🍑 5斤')">📋 复制</button>
+        </div>
+        <div class="collapse-hint" onclick="event.stopPropagation();collapseCard(this.parentElement.parentElement)">▲ 收起</div>
+      </div>
+      <div class="card-preview">
+        <span class="pv-info" onclick="event.stopPropagation();expandCard(this.parentElement.parentElement)">
+          <span class="pv-nm">红心蜜薯-小果-4.5斤普通装</span>
+          <span class="pv-stars">★★★★★</span>
+          <span class="pv-pri">¥35.8</span>
+        </span>
+        <button class="pv-action" onclick="event.stopPropagation();actionCard(this.parentElement.parentElement)">📋 开团</button>
+      </div>
+    </div>
+  
+  
+
+  <div class="card cat-food" id="r052310" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3D5ff008db81a110c052fc900d0d2730d79b5b509439406359b187728ea5ac7661%26inviteUid%3D158486507%26actId%3D2605113068714136%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🍑 加1.9💰换购五彩小圆子200g*1袋，¥1.9-49.9&amp;#10;🍑 g · 清甜 · 云南">
+      <div class="card-body" onclick="event.stopPropagation();collapseCard(this.parentElement)">
+        <div class="toprow">
+          <div class="info">
+            <div class="nm-row">
+              <span class="nm">【调味】加1.9💰换购五彩小圆子200g*1袋</span>
+              <span class="stars"><span class="s5">★★★★★</span></span>
+            </div>
+            <div class="sub-info">调味 1袋 · ¥1.9-49.9</div>
+            <div class="stats">
+              <span class="comm">💰 佣金 30.0%</span>
+              <span class="sale">📦 40人帮卖</span>
+            </div>
+            <div class="meta">
+              <span class="tg tg-h">热</span>
+              <span class="sup">我爱团</span>
+              
+              
+            </div>
+            
+          </div>
+          <div class="pri">¥1.9-49.9</div>
+        </div>
+        <div class="copy-row">
+          <span class="copy-txt">🍑 加1.9💰换购五彩小圆子200g*1袋，¥1.9-49.9</span>
+          <button class="copy-btn" onclick="event.stopPropagation();copyText(this,'🍑 加1.9💰换购五彩小圆子200g*1袋，¥1.9-49.9\n🍑 g · 清甜 · 云南')">📋 复制</button>
+        </div>
+        <div class="collapse-hint" onclick="event.stopPropagation();collapseCard(this.parentElement.parentElement)">▲ 收起</div>
+      </div>
+      <div class="card-preview">
+        <span class="pv-info" onclick="event.stopPropagation();expandCard(this.parentElement.parentElement)">
+          <span class="pv-nm">【调味】加1.9💰换购五彩小圆子200g*1袋</span>
+          <span class="pv-stars">★★★★★</span>
+          <span class="pv-pri">¥1.9-49.9</span>
+        </span>
+        <button class="pv-action" onclick="event.stopPropagation();actionCard(this.parentElement.parentElement)">📋 开团</button>
+      </div>
+    </div>
+  
+  
+
+  <div class="card cat-food" id="r148127" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3De02e0176994891960e67f9a312fb1b451c55a1319ace07dad633070b306140cd%26inviteUid%3D158486507%26actId%3D2506103481925060%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🍑 【小果5斤】盘锦碱地柿子草莓柿子，¥29.9-46.9&amp;#10;😋 沙瓤多汁，酸甜浓郁，有小时候的味道">
+      <div class="card-body" onclick="event.stopPropagation();collapseCard(this.parentElement)">
+        <div class="toprow">
+          <div class="info">
+            <div class="nm-row">
+              <span class="nm">【调味】【小果5斤】盘锦碱地柿子草莓柿子</span>
+              <span class="stars"><span class="s5">★★★★★</span></span>
+            </div>
+            
+            <div class="stats">
+              <span class="comm">💰 佣金 21.0%</span>
+              <span class="sale">📦 1668人已售</span>
+            </div>
+            <div class="meta">
+              <span class="tg tg-m">利</span>
+              <span class="sup">明星品牌馆</span>
+              
+              
+            </div>
+            
+          </div>
+          <div class="pri">¥29.9-46.9</div>
+        </div>
+        <div class="copy-row">
+          <span class="copy-txt">🍑 【小果5斤】盘锦碱地柿子草莓柿子，¥29.9-46.9</span>
+          <button class="copy-btn" onclick="event.stopPropagation();copyText(this,'🍑 【小果5斤】盘锦碱地柿子草莓柿子，¥29.9-46.9\n😋 沙瓤多汁，酸甜浓郁，有小时候的味道')">📋 复制</button>
+        </div>
+        <div class="collapse-hint" onclick="event.stopPropagation();collapseCard(this.parentElement.parentElement)">▲ 收起</div>
+      </div>
+      <div class="card-preview">
+        <span class="pv-info" onclick="event.stopPropagation();expandCard(this.parentElement.parentElement)">
+          <span class="pv-nm">【调味】【小果5斤】盘锦碱地柿子草莓柿子</span>
+          <span class="pv-stars">★★★★★</span>
+          <span class="pv-pri">¥29.9-46.9</span>
+        </span>
+        <button class="pv-action" onclick="event.stopPropagation();actionCard(this.parentElement.parentElement)">📋 开团</button>
+      </div>
+    </div>
+  
+  
+
+  <div class="card cat-food" id="r881263" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3D05484ced4809a6bbaef7c6539f26f5f218ffc353d5d27023824b0049c1e6eea8%26inviteUid%3D158486507%26actId%3D2504013877039813%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🍑 【开胃指数爆表❗】溢流香凉拌菜料汁60克，¥9.9-37.9">
+      <div class="card-body" onclick="event.stopPropagation();collapseCard(this.parentElement)">
+        <div class="toprow">
+          <div class="info">
+            <div class="nm-row">
+              <span class="nm">【禽蛋】【开胃指数爆表❗】溢流香凉拌菜料汁60克</span>
+              <span class="stars"><span class="s5">★★★★★</span></span>
+            </div>
+            
+            <div class="stats">
+              <span class="comm">💰 佣金 25.0%</span>
+              <span class="sale">📦 3990人已售</span>
+            </div>
+            <div class="meta">
+              <span class="tg tg-h">热</span>
+              <span class="sup">明星品牌馆</span>
+              
+              
+            </div>
+            
+          </div>
+          <div class="pri">¥9.9-37.9</div>
+        </div>
+        <div class="copy-row">
+          <span class="copy-txt">🍑 【开胃指数爆表❗】溢流香凉拌菜料汁60克，¥9.9-37.9</span>
+          <button class="copy-btn" onclick="event.stopPropagation();copyText(this,'🍑 【开胃指数爆表❗】溢流香凉拌菜料汁60克，¥9.9-37.9')">📋 复制</button>
+        </div>
+        <div class="collapse-hint" onclick="event.stopPropagation();collapseCard(this.parentElement.parentElement)">▲ 收起</div>
+      </div>
+      <div class="card-preview">
+        <span class="pv-info" onclick="event.stopPropagation();expandCard(this.parentElement.parentElement)">
+          <span class="pv-nm">【禽蛋】【开胃指数爆表❗】溢流香凉拌菜料汁60克</span>
+          <span class="pv-stars">★★★★★</span>
+          <span class="pv-pri">¥9.9-37.9</span>
+        </span>
+        <button class="pv-action" onclick="event.stopPropagation();actionCard(this.parentElement.parentElement)">📋 开团</button>
+      </div>
+    </div>
+  
+  
+    <div class="cat cat-fashion">👗 穿搭</div>
+    
+  
+
+  <div class="card cat-fashion" id="r087986" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3D99977785614651f6a27bc8a536a94e3a8067950a33e2d4d9fb0b28f58e222dd9%26inviteUid%3D158486507%26actId%3D2606051017482618%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="👗 ZEAMO柔肤护膝透气薄款，¥29.9&amp;#10;日本ZEAMO护膝">
+      <div class="card-body" onclick="event.stopPropagation();collapseCard(this.parentElement)">
+        <div class="toprow">
+          <div class="info">
+            <div class="nm-row">
+              <span class="nm">【裤装】ZEAMO柔肤护膝透气薄款</span>
+              <span class="stars"><span class="s5">★★★★★</span></span>
+            </div>
+            <div class="sub-info">裤装 日本ZEAMO护膝 · ¥29.9</div>
+            <div class="stats">
+              <span class="comm">💰 佣金 26.4%</span>
+              <span class="sale">📦 157人帮卖</span>
+            </div>
+            <div class="meta">
+              <span class="tg tg-h">热</span>
+              <span class="sup">露西Grocery</span>
+              
+              
+            </div>
+            
+          </div>
+          <div class="pri">¥29.9</div>
+        </div>
+        <div class="copy-row">
+          <span class="copy-txt">👗 ZEAMO柔肤护膝透气薄款，¥29.9</span>
+          <button class="copy-btn" onclick="event.stopPropagation();copyText(this,'👗 ZEAMO柔肤护膝透气薄款，¥29.9\n日本ZEAMO护膝')">📋 复制</button>
+        </div>
+        <div class="collapse-hint" onclick="event.stopPropagation();collapseCard(this.parentElement.parentElement)">▲ 收起</div>
+      </div>
+      <div class="card-preview">
+        <span class="pv-info" onclick="event.stopPropagation();expandCard(this.parentElement.parentElement)">
+          <span class="pv-nm">【裤装】ZEAMO柔肤护膝透气薄款</span>
+          <span class="pv-stars">★★★★★</span>
+          <span class="pv-pri">¥29.9</span>
+        </span>
+        <button class="pv-action" onclick="event.stopPropagation();actionCard(this.parentElement.parentElement)">📋 开团</button>
+      </div>
+    </div>
+  
+  
+
+  <div class="card cat-fashion" id="r743162" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3D3eb1f47455702e95583bf4fb28f95122d8c393599932e03bde8e0f0eafc83226%26inviteUid%3D158486507%26actId%3D2506163059048966%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="👗 【2瓶7.5折，立省10元】蔬果园冰箱除味剂，¥18.9-39.9&amp;#10;蔬果园">
+      <div class="card-body" onclick="event.stopPropagation();collapseCard(this.parentElement)">
+        <div class="toprow">
+          <div class="info">
+            <div class="nm-row">
+              <span class="nm">【裤装】【2瓶7.5折，立省10元】蔬果园冰箱除味剂</span>
+              <span class="stars"><span class="s5">★★★★★</span></span>
+            </div>
+            <div class="sub-info">裤装 蔬果园 · ¥18.9-39.9</div>
+            <div class="stats">
+              <span class="comm">💰 佣金 25.0%</span>
+              <span class="sale">📦 2753人已售</span>
+            </div>
+            <div class="meta">
+              <span class="tg tg-h">热</span>
+              <span class="sup">明星品牌馆</span>
+              
+              
+            </div>
+            
+          </div>
+          <div class="pri">¥18.9-39.9</div>
+        </div>
+        <div class="copy-row">
+          <span class="copy-txt">👗 【2瓶7.5折，立省10元】蔬果园冰箱除味剂，¥18.9-39.9</span>
+          <button class="copy-btn" onclick="event.stopPropagation();copyText(this,'👗 【2瓶7.5折，立省10元】蔬果园冰箱除味剂，¥18.9-39.9\n蔬果园')">📋 复制</button>
+        </div>
+        <div class="collapse-hint" onclick="event.stopPropagation();collapseCard(this.parentElement.parentElement)">▲ 收起</div>
+      </div>
+      <div class="card-preview">
+        <span class="pv-info" onclick="event.stopPropagation();expandCard(this.parentElement.parentElement)">
+          <span class="pv-nm">【裤装】【2瓶7.5折，立省10元】蔬果园冰箱除味剂</span>
+          <span class="pv-stars">★★★★★</span>
+          <span class="pv-pri">¥18.9-39.9</span>
+        </span>
+        <button class="pv-action" onclick="event.stopPropagation();actionCard(this.parentElement.parentElement)">📋 开团</button>
+      </div>
+    </div>
+  
+  
+
+  <div class="card cat-fashion" id="r185384" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3D4a5cb0bef017cec8fc248aeb21bf7d0a5ad6e50e4af63faef98b68ca0e39d26e%26inviteUid%3D158486507%26actId%3D2603113675314440%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="👗 明星同款条纹蛋卷空顶帽，¥39.9&amp;#10;明星同款空顶防晒帽把阳光挡在外面  把温柔戴在头上">
+      <div class="card-body" onclick="event.stopPropagation();collapseCard(this.parentElement)">
+        <div class="toprow">
+          <div class="info">
+            <div class="nm-row">
+              <span class="nm">【配饰】明星同款条纹蛋卷空顶帽</span>
+              <span class="stars"><span class="s3">★★★☆☆</span></span>
+            </div>
+            
+            <div class="stats">
+              <span class="comm">💰 佣金 15.0%</span>
+              <span class="sale">📦 17人帮卖</span>
+            </div>
+            <div class="meta">
+              
+              <span class="sup">喜多（送运费险6元）</span>
+              
+              
+            </div>
+            
+          </div>
+          <div class="pri">¥39.9</div>
+        </div>
+        <div class="copy-row">
+          <span class="copy-txt">👗 明星同款条纹蛋卷空顶帽，¥39.9</span>
+          <button class="copy-btn" onclick="event.stopPropagation();copyText(this,'👗 明星同款条纹蛋卷空顶帽，¥39.9\n明星同款空顶防晒帽把阳光挡在外面  把温柔戴在头上')">📋 复制</button>
+        </div>
+        <div class="collapse-hint" onclick="event.stopPropagation();collapseCard(this.parentElement.parentElement)">▲ 收起</div>
+      </div>
+      <div class="card-preview">
+        <span class="pv-info" onclick="event.stopPropagation();expandCard(this.parentElement.parentElement)">
+          <span class="pv-nm">【配饰】明星同款条纹蛋卷空顶帽</span>
+          <span class="pv-stars">★★★☆☆</span>
+          <span class="pv-pri">¥39.9</span>
+        </span>
+        <button class="pv-action" onclick="event.stopPropagation();actionCard(this.parentElement.parentElement)">📋 开团</button>
+      </div>
+    </div>
+  
+  
+
+  <div class="card cat-fashion" id="r189075" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3De1fd2eb9829a69c73d7cc4bc1d463be56aac1f86b2fca654e3be0daa8cf44bc9%26inviteUid%3D158486507%26actId%3D2606051017758034%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="👗 JEHURFIE 纪华菲夏季真皮女鞋系列，¥149.0-249.0">
+      <div class="card-body" onclick="event.stopPropagation();collapseCard(this.parentElement)">
+        <div class="toprow">
+          <div class="info">
+            <div class="nm-row">
+              <span class="nm">【鞋履】JEHURFIE 纪华菲夏季真皮女鞋系列</span>
+              <span class="stars"><span class="s2">★★☆☆☆</span></span>
+            </div>
+            
+            <div class="stats">
+              <span class="comm">💰 佣金 18.0%</span>
+              <span class="sale">📦 23人帮卖</span>
+            </div>
+            <div class="meta">
+              
+              <span class="sup">骄傲市集</span>
+              
+              
+            </div>
+            
+          </div>
+          <div class="pri">¥149.0-249.0</div>
+        </div>
+        <div class="copy-row">
+          <span class="copy-txt">👗 JEHURFIE 纪华菲夏季真皮女鞋系列，¥149.0-249.0</span>
+          <button class="copy-btn" onclick="event.stopPropagation();copyText(this,'👗 JEHURFIE 纪华菲夏季真皮女鞋系列，¥149.0-249.0')">📋 复制</button>
+        </div>
+        <div class="collapse-hint" onclick="event.stopPropagation();collapseCard(this.parentElement.parentElement)">▲ 收起</div>
+      </div>
+      <div class="card-preview">
+        <span class="pv-info" onclick="event.stopPropagation();expandCard(this.parentElement.parentElement)">
+          <span class="pv-nm">【鞋履】JEHURFIE 纪华菲夏季真皮女鞋系列</span>
+          <span class="pv-stars">★★☆☆☆</span>
+          <span class="pv-pri">¥149.0-249.0</span>
+        </span>
+        <button class="pv-action" onclick="event.stopPropagation();actionCard(this.parentElement.parentElement)">📋 开团</button>
+      </div>
+    </div>
+  
+
+</div>
+
+
+<div id="reserve-tab" class="tab-content">
+
+  
+  
+  
+    
+      <div class="cat cat-plant">🌿 园艺</div>
+      
+    
+
+    <div class="card cat-plant" id="r199002" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3D905598d377d07bd244fa4ddc3e5e03ff39b25001edb0970428953632e50dbabd%26inviteUid%3D158486507%26actId%3D2606051023985329%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🌿 单个口味任选(2袋、3袋、4袋)，¥25.8-54.8">
+      <div class="card-body" onclick="event.stopPropagation();collapseCard(this.parentElement)">
+        <div class="toprow">
+          <div class="info">
+            <div class="nm-row">
+              <span class="nm">单个口味任选(2袋、3袋、4袋)</span>
+              <span class="stars"><span class="s4">★★★★☆</span></span>
+            </div>
+            <div class="sub-info"> 2袋 · ¥25.8-54.8</div>
+            <div class="stats">
+              <span class="comm">💰 佣金 16.0%</span>
+              <span class="sale">📦 569人帮卖</span>
+            </div>
+            <div class="meta">
+              <span class="tg tg-h">热</span>
+              <span class="sup">云爸严选</span>
+            </div>
+          </div>
+          <div class="pri">¥25.8-54.8</div>
+        </div>
+        <div class="copy-row">
+          <span class="copy-txt">🌿 单个口味任选(2袋、3袋、4袋)，¥25.8-54.8</span>
+          <button class="copy-btn" onclick="event.stopPropagation();copyText(this,'🌿 单个口味任选(2袋、3袋、4袋)，¥25.8-54.8')">📋 复制</button>
+        </div>
+        <div class="collapse-hint" onclick="event.stopPropagation();collapseCard(this.parentElement.parentElement)">▲ 收起</div>
+      </div>
+      <div class="card-preview">
+        <span class="pv-info" onclick="event.stopPropagation();expandCard(this.parentElement.parentElement)">
+          <span class="pv-nm">单个口味任选(2袋、3袋、4袋)</span>
+          <span class="pv-stars">★★★★☆</span>
+          <span class="pv-pri">¥25.8-54.8</span>
+        </span>
+        <button class="pv-action" onclick="event.stopPropagation();actionCard(this.parentElement.parentElement)">📋 开团</button>
+      </div>
+    </div>
+  
+    
+
+    <div class="card cat-plant" id="r621991" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3Ddbf6161332eeb73f25b26f1b1dbd8f1f2e9bae7043ed401fbe68ae6b533da095%26inviteUid%3D158486507%26actId%3D2606022000876305%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🌿 凤梨干90g*3袋，¥29.9-39.9">
+      <div class="card-body" onclick="event.stopPropagation();collapseCard(this.parentElement)">
+        <div class="toprow">
+          <div class="info">
+            <div class="nm-row">
+              <span class="nm">凤梨干90g*3袋</span>
+              <span class="stars"><span class="s4">★★★★☆</span></span>
+            </div>
+            <div class="sub-info"> 3袋 · ¥29.9-39.9</div>
+            <div class="stats">
+              <span class="comm">💰 佣金 16.0%</span>
+              <span class="sale">📦 931人帮卖</span>
+            </div>
+            <div class="meta">
+              <span class="tg tg-h">热</span>
+              <span class="sup">云爸严选</span>
+            </div>
+          </div>
+          <div class="pri">¥29.9-39.9</div>
+        </div>
+        <div class="copy-row">
+          <span class="copy-txt">🌿 凤梨干90g*3袋，¥29.9-39.9</span>
+          <button class="copy-btn" onclick="event.stopPropagation();copyText(this,'🌿 凤梨干90g*3袋，¥29.9-39.9')">📋 复制</button>
+        </div>
+        <div class="collapse-hint" onclick="event.stopPropagation();collapseCard(this.parentElement.parentElement)">▲ 收起</div>
+      </div>
+      <div class="card-preview">
+        <span class="pv-info" onclick="event.stopPropagation();expandCard(this.parentElement.parentElement)">
+          <span class="pv-nm">凤梨干90g*3袋</span>
+          <span class="pv-stars">★★★★☆</span>
+          <span class="pv-pri">¥29.9-39.9</span>
+        </span>
+        <button class="pv-action" onclick="event.stopPropagation();actionCard(this.parentElement.parentElement)">📋 开团</button>
+      </div>
+    </div>
+  
+    
+
+    <div class="card cat-plant" id="r411004" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3D4904e89538a1f7ac6b38f82393280858b9923d0525664f4b957248a117b58f0b%26inviteUid%3D158486507%26actId%3D2606060461382833%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🌿 广式烧鸭1.25kg～1.5kg一只，¥19.9-89.0">
+      <div class="card-body" onclick="event.stopPropagation();collapseCard(this.parentElement)">
+        <div class="toprow">
+          <div class="info">
+            <div class="nm-row">
+              <span class="nm">广式烧鸭1.25kg～1.5kg一只</span>
+              <span class="stars"><span class="s4">★★★★☆</span></span>
+            </div>
+            
+            <div class="stats">
+              <span class="comm">💰 佣金 20.0%</span>
+              <span class="sale">📦 49人帮卖</span>
+            </div>
+            <div class="meta">
+              <span class="tg tg-m">利</span>
+              <span class="sup">云爸严选</span>
+            </div>
+          </div>
+          <div class="pri">¥19.9-89.0</div>
+        </div>
+        <div class="copy-row">
+          <span class="copy-txt">🌿 广式烧鸭1.25kg～1.5kg一只，¥19.9-89.0</span>
+          <button class="copy-btn" onclick="event.stopPropagation();copyText(this,'🌿 广式烧鸭1.25kg～1.5kg一只，¥19.9-89.0')">📋 复制</button>
+        </div>
+        <div class="collapse-hint" onclick="event.stopPropagation();collapseCard(this.parentElement.parentElement)">▲ 收起</div>
+      </div>
+      <div class="card-preview">
+        <span class="pv-info" onclick="event.stopPropagation();expandCard(this.parentElement.parentElement)">
+          <span class="pv-nm">广式烧鸭1.25kg～1.5kg一只</span>
+          <span class="pv-stars">★★★★☆</span>
+          <span class="pv-pri">¥19.9-89.0</span>
+        </span>
+        <button class="pv-action" onclick="event.stopPropagation();actionCard(this.parentElement.parentElement)">📋 开团</button>
+      </div>
+    </div>
+  
+    
+
+    <div class="card cat-plant" id="r586809" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3Df566f3c09963a46ada08b894141a18461d26ba36596cbfd0714f7f267b6678de%26inviteUid%3D158486507%26actId%3D2606051044639076%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🌿 黑金刚/黑珍珠百合【五球装】，¥19.9｜花园轻松养&amp;#10;📦 预计9月发货&amp;#10;🧊⚠️需春化（两广慎入） · 封闭阳台✅ · 开放阳台✅ · 露台✅ · 花园✅ · ❄️耐-20℃ · ☀️⚠️怕暴晒，夏天需遮阴">
+      <div class="card-body" onclick="event.stopPropagation();collapseCard(this.parentElement)">
+        <div class="toprow">
+          <div class="info">
+            <div class="nm-row">
+              <span class="nm">【百合】黑金刚/黑珍珠百合【五球装】</span>
+              <span class="stars"><span class="s4">★★★★☆</span></span>
+            </div>
+            <div class="sub-info">百合 🎉·“黑金刚/黑珍珠百合 · ¥19.9</div>
+            <div class="stats">
+              <span class="comm">💰 佣金 13.0%</span>
+              <span class="sale">📦 259人帮卖</span>
+            </div>
+            <div class="meta">
+              <span class="tg tg-h">热</span>
+              <span class="sup">圈圈植物</span>
+            </div>
+          </div>
+          <div class="pri">¥19.9</div>
+        </div>
+        <div class="copy-row">
+          <span class="copy-txt">🌿 黑金刚/黑珍珠百合【五球装】，¥19.9 · 🌡️10-28℃ · 封闭阳台✅ · 开放阳台✅ · 露台✅ · 花园✅</span>
+          <button class="copy-btn" onclick="event.stopPropagation();copyText(this,'🌿 黑金刚/黑珍珠百合【五球装】，¥19.9｜花园轻松养\n📦 预计9月发货\n🧊⚠️需春化（两广慎入） · 封闭阳台✅ · 开放阳台✅ · 露台✅ · 花园✅ · ❄️耐-20℃ · ☀️⚠️怕暴晒，夏天需遮阴')">📋 复制</button>
+        </div>
+        <div class="collapse-hint" onclick="event.stopPropagation();collapseCard(this.parentElement.parentElement)">▲ 收起</div>
+      </div>
+      <div class="card-preview">
+        <span class="pv-info" onclick="event.stopPropagation();expandCard(this.parentElement.parentElement)">
+          <span class="pv-nm">【百合】黑金刚/黑珍珠百合【五球装】</span>
+          <span class="pv-stars">★★★★☆</span>
+          <span class="pv-pri">¥19.9</span>
+        </span>
+        <button class="pv-action" onclick="event.stopPropagation();actionCard(this.parentElement.parentElement)">📋 开团</button>
+      </div>
+    </div>
+  
+    
+
+    <div class="card cat-plant" id="r732813" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3Dcb761b39ba5817903ec3225ee4c0101cda41f054eec8493dbe7a496898a2bd38%26inviteUid%3D158486507%26actId%3D2605051868213394%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🌿 买二赠一‼️【240g*3盒】小米八珍糕，¥14.9-29.8&amp;#10;古法新作">
+      <div class="card-body" onclick="event.stopPropagation();collapseCard(this.parentElement)">
+        <div class="toprow">
+          <div class="info">
+            <div class="nm-row">
+              <span class="nm">买二赠一‼️【240g*3盒】小米八珍糕</span>
+              <span class="stars"><span class="s4">★★★★☆</span></span>
+            </div>
+            <div class="sub-info"> 古法新作 · ¥14.9-29.8</div>
+            <div class="stats">
+              <span class="comm">💰 佣金 19.5%</span>
+              <span class="sale">📦 44人帮卖</span>
+            </div>
+            <div class="meta">
+              <span class="tg tg-m">利</span>
+              <span class="sup">橙享生活</span>
+            </div>
+          </div>
+          <div class="pri">¥14.9-29.8</div>
+        </div>
+        <div class="copy-row">
+          <span class="copy-txt">🌿 买二赠一‼️【240g*3盒】小米八珍糕，¥14.9-29.8</span>
+          <button class="copy-btn" onclick="event.stopPropagation();copyText(this,'🌿 买二赠一‼️【240g*3盒】小米八珍糕，¥14.9-29.8\n古法新作')">📋 复制</button>
+        </div>
+        <div class="collapse-hint" onclick="event.stopPropagation();collapseCard(this.parentElement.parentElement)">▲ 收起</div>
+      </div>
+      <div class="card-preview">
+        <span class="pv-info" onclick="event.stopPropagation();expandCard(this.parentElement.parentElement)">
+          <span class="pv-nm">买二赠一‼️【240g*3盒】小米八珍糕</span>
+          <span class="pv-stars">★★★★☆</span>
+          <span class="pv-pri">¥14.9-29.8</span>
+        </span>
+        <button class="pv-action" onclick="event.stopPropagation();actionCard(this.parentElement.parentElement)">📋 开团</button>
+      </div>
+    </div>
+  
+    
+      <div class="cat cat-food">🍑 水果+零食</div>
+      
+    
+
+    <div class="card cat-food" id="r743220" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3D1de8f63119c1fcaf648e67b31b5a7217086b9d97b90de6d2649470c065a3e25b%26inviteUid%3D158486507%26actId%3D2603253085211777%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🍑 【10枚装】椰蓉面包，¥39.9&amp;#10;🍑 进口">
+      <div class="card-body" onclick="event.stopPropagation();collapseCard(this.parentElement)">
+        <div class="toprow">
+          <div class="info">
+            <div class="nm-row">
+              <span class="nm">【糕点】【10枚装】椰蓉面包</span>
+              <span class="stars"><span class="s5">★★★★★</span></span>
+            </div>
+            
+            <div class="stats">
+              <span class="comm">💰 佣金 20.0%</span>
+              <span class="sale">📦 43人帮卖</span>
+            </div>
+            <div class="meta">
+              <span class="tg tg-m">利</span>
+              <span class="sup">橙享生活</span>
+            </div>
+          </div>
+          <div class="pri">¥39.9</div>
+        </div>
+        <div class="copy-row">
+          <span class="copy-txt">🍑 【10枚装】椰蓉面包，¥39.9</span>
+          <button class="copy-btn" onclick="event.stopPropagation();copyText(this,'🍑 【10枚装】椰蓉面包，¥39.9\n🍑 进口')">📋 复制</button>
+        </div>
+        <div class="collapse-hint" onclick="event.stopPropagation();collapseCard(this.parentElement.parentElement)">▲ 收起</div>
+      </div>
+      <div class="card-preview">
+        <span class="pv-info" onclick="event.stopPropagation();expandCard(this.parentElement.parentElement)">
+          <span class="pv-nm">【糕点】【10枚装】椰蓉面包</span>
+          <span class="pv-stars">★★★★★</span>
+          <span class="pv-pri">¥39.9</span>
+        </span>
+        <button class="pv-action" onclick="event.stopPropagation();actionCard(this.parentElement.parentElement)">📋 开团</button>
+      </div>
+    </div>
+  
+    
+
+    <div class="card cat-food" id="r906100" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3D3d40cc0ec88e404c5df8e5c57c6564ccafe9d804dfc926828c72832a80c7b31b%26inviteUid%3D158486507%26actId%3D2606041504057167%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🍑 突发福利🔴御杏29.9秒杀2斤❗，¥29.9-39.9&amp;#10;😋 甜度爆表，汁水足，一口一个停不下来">
+      <div class="card-body" onclick="event.stopPropagation();collapseCard(this.parentElement)">
+        <div class="toprow">
+          <div class="info">
+            <div class="nm-row">
+              <span class="nm">突发福利🔴御杏29.9秒杀2斤❗</span>
+              <span class="stars"><span class="s5">★★★★★</span></span>
+            </div>
+            
+            <div class="stats">
+              <span class="comm">💰 佣金 20.0%</span>
+              <span class="sale">📦 365人帮卖</span>
+            </div>
+            <div class="meta">
+              <span class="tg tg-m">利</span>
+              <span class="sup">露西Grocery</span>
+            </div>
+          </div>
+          <div class="pri">¥29.9-39.9</div>
+        </div>
+        <div class="copy-row">
+          <span class="copy-txt">🍑 突发福利🔴御杏29.9秒杀2斤❗，¥29.9-39.9</span>
+          <button class="copy-btn" onclick="event.stopPropagation();copyText(this,'🍑 突发福利🔴御杏29.9秒杀2斤❗，¥29.9-39.9\n😋 甜度爆表，汁水足，一口一个停不下来')">📋 复制</button>
+        </div>
+        <div class="collapse-hint" onclick="event.stopPropagation();collapseCard(this.parentElement.parentElement)">▲ 收起</div>
+      </div>
+      <div class="card-preview">
+        <span class="pv-info" onclick="event.stopPropagation();expandCard(this.parentElement.parentElement)">
+          <span class="pv-nm">突发福利🔴御杏29.9秒杀2斤❗</span>
+          <span class="pv-stars">★★★★★</span>
+          <span class="pv-pri">¥29.9-39.9</span>
+        </span>
+        <button class="pv-action" onclick="event.stopPropagation();actionCard(this.parentElement.parentElement)">📋 开团</button>
+      </div>
+    </div>
+  
+
+</div>
+
+</div>
+
+<div class="footer">最近更新：2026-06-07 01:07</div>
+
+
+<script>
+var PW = "0b19b2bfc66338b60fc3402d3b0e2b56fc376fa3d859f33e797e9c90cb08f5ff";
+var KEY = "push_20260607";
+</script>
+
+<script>/**
+ * 那与航 · 推品页面 JS v3
+ * PW / KEY 由页面 <script> 内联注入，push.js 从全局读取
+ * 
+ * 交互设计：
+ *   - 卡片展开区：点击 → 收起为预览条（不复制不跳转）
+ *   - 预览条左侧：点击 → 展开卡片
+ *   - 预览条「📋 开团」按钮：复制话术 + 打开链接 + 标记完成
+ *   - 展开区「📋 复制」按钮：仅复制话术
+ */
+var AUTH_KEY = "push_auth";
+var AUTH_EXPIRE_DAYS = 7;
+
+// ---- Auth 7天有效期 ----
+(function initAuth() {
+    var stored = localStorage.getItem(AUTH_KEY);
+    if (stored) {
+        try {
+            var data = JSON.parse(stored);
+            var now = Date.now();
+            if (data.auth === "1" && data.expire > now) {
+                show();
+                return;
+            }
+        } catch (e) {}
+    }
+})();
+
+function show() {
+    document.getElementById("lock").style.display = "none";
+    document.getElementById("main").style.display = "block";
+    initProg();
+}
+
+function checkPw() {
+    crypto.subtle.digest("SHA-256", new TextEncoder().encode(document.getElementById("pw").value)).then(function (b) {
+        var h = Array.from(new Uint8Array(b)).map(function (x) { return x.toString(16).padStart(2, "0"); }).join("");
+        if (h === PW) {
+            var expire = Date.now() + AUTH_EXPIRE_DAYS * 24 * 60 * 60 * 1000;
+            localStorage.setItem(AUTH_KEY, JSON.stringify({ auth: "1", expire: expire }));
+            show();
+        } else {
+            document.getElementById("err").style.display = "block";
+        }
+    });
+}
+
+// ---- 进度恢复 ----
+function initProg() {
+    var d = JSON.parse(localStorage.getItem(KEY) || "[]");
+    var l = localStorage.getItem(KEY + "_last") || "";
+    d.forEach(function (i) {
+        var e = document.getElementById("r" + i);
+        if (e) e.classList.add("done");
+    });
+    if (l) {
+        var e = document.getElementById("r" + l);
+        if (e) {
+            e.classList.add("pos");
+            setTimeout(function () { e.scrollIntoView({ block: "center" }); }, 300);
+        }
+    }
+}
+
+// ---- 展开卡片（从预览条） ----
+function expandCard(card) {
+    card.classList.remove("done");
+    card.classList.add("expanded");
+}
+
+// ---- 收起卡片（从展开区） ----
+function collapseCard(card) {
+    card.classList.remove("expanded");
+    card.classList.add("done");
+}
+
+// ---- 预览条「📋 开团」：复制 + 跳转 + 标记完成 ----
+function actionCard(card) {
+    var id = card.id.replace("r", "");
+    var d = JSON.parse(localStorage.getItem(KEY) || "[]");
+    if (d.indexOf(id) < 0) {
+        d.push(id);
+        localStorage.setItem(KEY, JSON.stringify(d));
+    }
+    localStorage.setItem(KEY + "_last", id);
+    card.classList.add("done");
+    card.classList.remove("expanded");
+
+    var copyTxt = card.getAttribute("data-copy");
+    if (copyTxt) {
+        copyTxt = copyTxt.replace(/&#10;/g, "\n");
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(copyTxt).catch(function () {});
+        }
+    }
+
+    var link = card.getAttribute("data-link");
+    if (link && link !== "#") {
+        setTimeout(function () { window.open(link, "_blank"); }, 200);
+    }
+}
+
+// ---- 复制话术（展开区的复制按钮） ----
+function copyText(btn, txt) {
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(txt).then(function () {
+            btn.textContent = "✅ 已复制";
+            btn.classList.add("copied");
+            showToast("已复制推品话术");
+            setTimeout(function () { btn.textContent = "📋 复制"; btn.classList.remove("copied"); }, 2000);
+        }).catch(function () {
+            fallbackCopy(btn, txt);
+        });
+    } else {
+        fallbackCopy(btn, txt);
+    }
+}
+
+function fallbackCopy(btn, txt) {
+    var ta = document.createElement("textarea");
+    ta.value = txt;
+    ta.style.position = "fixed";
+    ta.style.left = "-9999px";
+    ta.style.top = "-9999px";
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+        document.execCommand("copy");
+        btn.textContent = "✅ 已复制";
+        btn.classList.add("copied");
+        showToast("已复制推品话术");
+    } catch (e) {
+        showToast("复制失败，请手动复制");
+    }
+    document.body.removeChild(ta);
+    setTimeout(function () { btn.textContent = "📋 复制"; btn.classList.remove("copied"); }, 2000);
+}
+
+function showToast(msg) {
+    var el = document.getElementById("toast") || (function () {
+        var d = document.createElement("div");
+        d.id = "toast";
+        document.body.appendChild(d);
+        return d;
+    })();
+    el.textContent = msg;
+    el.style.opacity = "1";
+    setTimeout(function () { el.style.opacity = "0"; }, 1800);
+}
+
+function goLast() {
+    var l = localStorage.getItem(KEY + "_last") || "";
+    var e = document.getElementById("r" + l);
+    if (e) e.scrollIntoView({ behavior: "smooth", block: "center" });
+    else alert("无记录");
+}
+
+function resetDone() {
+    localStorage.removeItem(KEY);
+    localStorage.removeItem(KEY + "_last");
+    location.reload();
+}
+
+// ---- Tab 切换 ----
+function switchTab(tabId) {
+    document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+    document.querySelectorAll('.tab-content').forEach(function(t) { t.classList.remove('active'); });
+    event.target.closest('.tab-btn').classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+}
+
+// ---- 品类折叠/展开 ----
+function toggleOvCat(el) {
+    el.classList.toggle('open');
+}
+
+function toggleUnpushed(el) {
+    var list = el.nextElementSibling;
+    var show = list.style.display === 'none' || list.style.display === '';
+    list.style.display = show ? 'block' : 'none';
+    el.textContent = el.textContent.replace(/[▼▲]$/, show ? '▲' : '▼');
+}
+
+document.getElementById("pw").addEventListener("keypress", function (e) {
+    if (e.key === "Enter") checkPw();
+});</script>
+
+</body>
+</html>
