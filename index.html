@@ -1644,7 +1644,7 @@ body {
           <div class="cat-header">🍑 水果+零食 · 11 品</div>
         
         
-        <div class="card" id="r968301" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3D80309bdbf3abc973f36948910ba9dc4f4aa111b907eec9e832e5342259440aa2%26inviteUid%3D158486507%26actId%3D2508012462441234%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🍑 钦海琼 咸海鸭蛋，¥19.9-58.0&amp;#10;😋 广西 · 礼盒">
+        <div class="card" id="r968301" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3D80309bdbf3abc973f36948910ba9dc4f4aa111b907eec9e832e5342259440aa2%26inviteUid%3D158486507%26actId%3D2508012462441234%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🍑 钦海琼 咸海鸭蛋，¥19.9-58.0&amp;#10;😋 礼盒 · 广西">
           <div class="card-top">
             <span class="card-name">禽蛋 · 钦海琼 咸海鸭蛋</span>
             <span class="card-price">¥19.9-58.0</span>
@@ -20845,7 +20845,7 @@ body {
 </div>
 
 
-<div class="footer">最近更新：2026-06-07 19:25 · 那与航优选 v3</div>
+<div class="footer">最近更新：2026-06-07 19:31 · 那与航优选 v3</div>
 
 
 <div class="float-tabs">
@@ -21008,21 +21008,30 @@ function formatForWechat(text) {
     // 第一行：标题+价格
     var result = lines[0];
 
-    // 第二行：四前/养护信息 → 拆分 " · " 为多行
-    if (lines.length >= 2) {
-        var careLine = lines[1];
-        // 如果以 🧊 开头（园艺四前标注），拆分 " · " 
-        if (careLine.indexOf("🧊") >= 0 || careLine.indexOf("🏠") >= 0 || careLine.indexOf("❄️") >= 0) {
-            var careItems = careLine.split(" · ");
-            result += "\n\n" + careItems.join("\n");
-        } else {
-            result += "\n\n" + careLine;
+    // 在剩余行中查找四问行（🧊/🏠/❄️ 开头），处理预售/标签等中间行
+    var siqianIdx = -1;
+    for (var i = 1; i < lines.length; i++) {
+        if (lines[i].indexOf("🧊") >= 0 || lines[i].indexOf("🏠") >= 0) {
+            siqianIdx = i;
+            break;
         }
     }
 
-    // 剩余行（品鉴/种植者等）
-    if (lines.length > 2) {
-        result += "\n\n" + lines.slice(2).join("\n");
+    if (siqianIdx > 0) {
+        // 四问之前的行（预售通知📦、种植者🏡等）
+        for (var j = 1; j < siqianIdx; j++) {
+            result += "\n" + lines[j];
+        }
+        // 四问行拆分 emoji 换行
+        var careItems = lines[siqianIdx].split(" · ");
+        result += "\n\n" + careItems.join("\n");
+        // 四问之后的行
+        for (var k = siqianIdx + 1; k < lines.length; k++) {
+            result += "\n" + lines[k];
+        }
+    } else if (lines.length >= 2) {
+        // 无四问行：剩余行原样追加（水果/穿搭/无KB植物）
+        result += "\n\n" + lines.slice(1).join("\n");
     }
 
     return result.replace(/\n{3,}/g, "\n\n");
