@@ -11,7 +11,7 @@ cd "$SCRIPT_DIR"
 
 # 🔍 部署前自动验证
 echo "🔍 部署前验证..."
-bash "$SCRIPT_DIR/../verify_push.sh" "$SCRIPT_DIR/../push.html" || { echo "🔴 验证失败，中止部署"; exit 1; }
+/Users/anada/.workbuddy/binaries/python/envs/default/bin/python3 "$SCRIPT_DIR/../content_check.py" || { echo "🔴 内容检查失败，拒绝部署"; exit 1; }
 echo ""
 
 # 同步 push.html
