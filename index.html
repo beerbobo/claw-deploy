@@ -386,23 +386,26 @@ body {
   color: var(--c-done);
 }
 .btn-sold-mark {
-  width: 32px;
-  height: 32px;
-  min-height: 32px;
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 24px;
+  height: 24px;
+  min-height: 24px;
   flex: none;
   border: 1px solid var(--c-line);
   border-radius: 50%;
   background: #fff;
   color: var(--c-text-h);
-  font-size: 14px;
+  font-size: 11px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
   transition: all 150ms;
-  align-self: center;
   font-family: var(--font);
+  z-index: 2;
 }
 .btn-sold-mark:active { transform: scale(0.9); }
 .btn-sold-mark.sold-out-marked {
@@ -752,6 +755,12 @@ body {
 /* Footer */
 .footer { text-align: center; padding: 28px 28px 80px; font-size: var(--fs-sm); color: var(--c-text-h); }
 
+/* 移动端底部预留 */
+@media (max-width: 640px) {
+  #main { padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)); }
+  .footer { padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px)); }
+}
+
 /* 移动端底部浮动Tab */
 @media (max-width: 640px) {
   .float-tabs {
@@ -764,6 +773,7 @@ body {
     border-top: 1px solid var(--c-line);
     z-index: 20;
     box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
   .float-tab {
     flex: 1;
@@ -1690,7 +1700,7 @@ body {
       
         
         
-        <div class="card" id="r971640" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3Db5d9c398efd5d2d21a41edc9389d80becef31b2c2ecbe70f9cf6d8b42df67331%26inviteUid%3D158486507%26actId%3D2605311104888327%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🍑 广西桂皮100g，¥15.0-88.0&amp;#10;🍑 g · 浓郁">
+        <div class="card" id="r971640" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3Db5d9c398efd5d2d21a41edc9389d80becef31b2c2ecbe70f9cf6d8b42df67331%26inviteUid%3D158486507%26actId%3D2605311104888327%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🍑 广西桂皮100g，¥15.0-88.0&amp;#10;🍑 浓郁 · g">
           <div class="card-top">
             <span class="card-name">广西桂皮100g</span>
             <span class="card-price">¥15.0-88.0</span>
@@ -1814,7 +1824,7 @@ body {
       
         
         
-        <div class="card" id="r052310" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3D5ff008db81a110c052fc900d0d2730d79b5b509439406359b187728ea5ac7661%26inviteUid%3D158486507%26actId%3D2605113068714136%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🍑 加1.9💰换购五彩小圆子200g*1袋，¥1.9-49.9&amp;#10;🍑 g · 云南 · 清甜">
+        <div class="card" id="r052310" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3D5ff008db81a110c052fc900d0d2730d79b5b509439406359b187728ea5ac7661%26inviteUid%3D158486507%26actId%3D2605113068714136%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🍑 加1.9💰换购五彩小圆子200g*1袋，¥1.9-49.9&amp;#10;🍑 清甜 · 云南 · g">
           <div class="card-top">
             <span class="card-name">加1.9💰换购五彩小圆子200g*1袋</span>
             <span class="card-price">¥1.9-49.9</span>
@@ -18802,7 +18812,7 @@ body {
 </div>
 
 
-<div class="footer">最近更新：2026-06-07 17:13 · 那与航优选 v3</div>
+<div class="footer">最近更新：2026-06-07 17:19 · 那与航优选 v3</div>
 
 
 <div class="float-tabs">
