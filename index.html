@@ -380,7 +380,6 @@ body {
 .btn-open.opened {
   background: var(--c-done-lt);
   color: var(--c-done);
-  pointer-events: none;
 }
 .done-ribbon {
   position: absolute;
@@ -3803,7 +3802,7 @@ body {
         <div class="rcard-reason">🍑 加1.9💰换购五彩小圆子200g*1袋，¥1.9-49.9</div>
         <div class="rcard-meta"><span>佣金 30.0%</span><span>帮卖 40人帮卖</span><span>我爱团</span></div>
         <div class="rcard-acts">
-          <button class="btn btn-copy rcard-btn" onclick="doCopyFP(this,'🍑 加1.9💰换购五彩小圆子200g*1袋，¥1.9-49.9\n🍑 清甜 · 云南 · g')">复制</button>
+          <button class="btn btn-copy rcard-btn" onclick="doCopyFP(this,'🍑 加1.9💰换购五彩小圆子200g*1袋，¥1.9-49.9\n🍑 清甜 · g · 云南')">复制</button>
           <button class="btn btn-open rcard-btn" onclick="doOpenFP(this,'https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3D5ff008db81a110c052fc900d0d2730d79b5b509439406359b187728ea5ac7661%26inviteUid%3D158486507%26actId%3D2605113068714136%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1')">开团</button>
           <button class="cal-row-btn" onclick="doMark(this,'调味 · 加1.9💰换购五彩小圆子200g*1袋','配额满')">🔔 标记漏杀</button>
         </div>
@@ -18398,7 +18397,7 @@ body {
 </div>
 
 
-<div class="footer">最近更新：2026-06-07 16:01 · 那与航优选 v3</div>
+<div class="footer">最近更新：2026-06-07 16:14 · 那与航优选 v3</div>
 
 </div>
 
@@ -18588,12 +18587,28 @@ function doCopy(btn, cardId) {
 // 开团按钮：复制 + 跳转 + 标记完成
 function doOpen(btn, cardId) {
     var card = document.getElementById(cardId);
-    if (!card || card.classList.contains("done")) return;
+    if (!card) return;
 
-    // 🔴 先打开链接（必须在用户点击同步上下文中，否则被弹窗拦截）
+    // 🔴 先打开链接（必须在用户点击同步上下文中）
     var link = card.getAttribute("data-link");
     if (link && link !== "#") {
-        window.open(link, "_blank");
+        // 双重保险：window.open + a 标签兜底
+        var w = window.open(link, "_blank");
+        if (!w) {
+            var a = document.createElement("a");
+            a.href = link;
+            a.target = "_blank";
+            a.rel = "noopener";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    }
+
+    // 如果已标记过 done，仅重新打开链接
+    if (card.classList.contains("done")) {
+        toast("已重新打开团链接");
+        return;
     }
 
     // 标记完成
