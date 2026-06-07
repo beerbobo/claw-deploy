@@ -385,6 +385,33 @@ body {
   background: var(--c-done-lt);
   color: var(--c-done);
 }
+.btn-sold {
+  background: #fff;
+  color: var(--c-danger);
+  border: 1px solid var(--c-danger-lt);
+  flex: 0.6;
+  font-size: 13px;
+}
+.btn-sold.sold-out-marked {
+  background: var(--c-danger-lt);
+  color: var(--c-danger);
+}
+.card.sold-out {
+  opacity: 0.5;
+  border-color: var(--c-danger);
+}
+.card.sold-out::after {
+  content: "已售罄";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-15deg);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--c-danger);
+  opacity: 0.4;
+  pointer-events: none;
+}
 .done-ribbon {
   position: absolute;
   top: 0;
@@ -1216,6 +1243,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r924352')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r924352')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r924352')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -1244,6 +1272,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r853897')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r853897')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r853897')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -1272,6 +1301,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r494171')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r494171')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r494171')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -1300,6 +1330,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r231571')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r231571')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r231571')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -1326,6 +1357,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r903972')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r903972')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r903972')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -1352,6 +1384,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r989636')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r989636')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r989636')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -1380,6 +1413,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r271071')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r271071')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r271071')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -1406,6 +1440,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r489821')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r489821')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r489821')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -1437,6 +1472,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r548861')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r548861')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r548861')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -1463,12 +1499,13 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r968301')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r968301')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r968301')">⚠️ 售罄</button>
           </div>
         </div>
       
         
         
-        <div class="card" id="r971640" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3Db5d9c398efd5d2d21a41edc9389d80becef31b2c2ecbe70f9cf6d8b42df67331%26inviteUid%3D158486507%26actId%3D2605311104888327%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🍑 广西桂皮100g，¥15.0-88.0&amp;#10;🍑 浓郁 · g">
+        <div class="card" id="r971640" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3Db5d9c398efd5d2d21a41edc9389d80becef31b2c2ecbe70f9cf6d8b42df67331%26inviteUid%3D158486507%26actId%3D2605311104888327%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🍑 广西桂皮100g，¥15.0-88.0&amp;#10;🍑 g · 浓郁">
           <div class="card-top">
             <span class="card-name">广西桂皮100g</span>
             <span class="card-price">¥15.0-88.0</span>
@@ -1489,6 +1526,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r971640')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r971640')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r971640')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -1515,6 +1553,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r533398')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r533398')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r533398')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -1541,6 +1580,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r396327')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r396327')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r396327')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -1567,6 +1607,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r913085')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r913085')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r913085')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -1598,6 +1639,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r087986')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r087986')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r087986')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -1624,6 +1666,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r743162')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r743162')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r743162')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -1650,6 +1693,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r357469')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r357469')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r357469')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -1676,6 +1720,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r405375')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r405375')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r405375')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -1711,6 +1756,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r168408')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r168408')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r168408')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -1737,6 +1783,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r017203')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r017203')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r017203')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -1763,6 +1810,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r199649')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r199649')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r199649')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -1794,12 +1842,13 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r058460')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r058460')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r058460')">⚠️ 售罄</button>
           </div>
         </div>
       
         
         
-        <div class="card" id="r396102" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3D8a648862d8b55ee078c4df75d93571bef78f1ac42ac967ae78d26592d0a41c5a%26inviteUid%3D158486507%26actId%3D2606060692329456%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🍑 Neurrisczz纽卓诗葡萄味睡眠软糖，¥39.0-69.0&amp;#10;🍑 进口 · g">
+        <div class="card" id="r396102" data-link="https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3D8a648862d8b55ee078c4df75d93571bef78f1ac42ac967ae78d26592d0a41c5a%26inviteUid%3D158486507%26actId%3D2606060692329456%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1" data-copy="🍑 Neurrisczz纽卓诗葡萄味睡眠软糖，¥39.0-69.0&amp;#10;🍑 g · 进口">
           <div class="card-top">
             <span class="card-name">调味 · Neurrisczz纽卓诗葡萄味睡眠软糖</span>
             <span class="card-price">¥39.0-69.0</span>
@@ -1820,6 +1869,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r396102')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r396102')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r396102')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -1846,6 +1896,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r604536')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r604536')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r604536')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -1877,6 +1928,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r825835')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r825835')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r825835')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -1903,6 +1955,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r256905')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r256905')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r256905')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -1929,6 +1982,7 @@ body {
           <div class="card-acts">
             <button class="btn btn-copy" onclick="doCopy(this,'r441552')">复制话术</button>
             <button class="btn btn-open" onclick="doOpen(this,'r441552')">开团</button>
+            <button class="btn btn-sold" onclick="doSoldOut(this,'r441552')">⚠️ 售罄</button>
           </div>
         </div>
       
@@ -3772,7 +3826,7 @@ body {
         <div class="rcard-reason">🍑 加1.9💰换购五彩小圆子200g*1袋，¥1.9-49.9</div>
         <div class="rcard-meta"><span>佣金 30.0%</span><span>帮卖 40人帮卖</span><span>我爱团</span></div>
         <div class="rcard-acts">
-          <button class="btn btn-copy rcard-btn" onclick="doCopyFP(this,'🍑 加1.9💰换购五彩小圆子200g*1袋，¥1.9-49.9\n🍑 云南 · g · 清甜')">复制</button>
+          <button class="btn btn-copy rcard-btn" onclick="doCopyFP(this,'🍑 加1.9💰换购五彩小圆子200g*1袋，¥1.9-49.9\n🍑 g · 云南 · 清甜')">复制</button>
           <button class="btn btn-open rcard-btn" onclick="doOpenFP(this,'https://hao.qunjielong.com/jump-mp.html?appId=wx059cd327295ab444&amp;ghName=gh_38274c71b09c&amp;miniFullPath=pro%2Fpages%2Fseq-detail%2Fdetail-mutual-sale-child%2Fdetail-mutual-sale-child%3FhotPointValue%3D5ff008db81a110c052fc900d0d2730d79b5b509439406359b187728ea5ac7661%26inviteUid%3D158486507%26actId%3D2605113068714136%26fromShare%3D1%26shareScene%3D10004%26shareByLink%3D1')">开团</button>
           <button class="cal-row-btn" onclick="doMark(this,'加1.9💰换购五彩小圆子200g*1袋','配额满')">🔔 标记漏杀</button>
         </div>
@@ -18367,7 +18421,7 @@ body {
 </div>
 
 
-<div class="footer">最近更新：2026-06-07 16:30 · 那与航优选 v3</div>
+<div class="footer">最近更新：2026-06-07 16:34 · 那与航优选 v3</div>
 
 </div>
 
@@ -18765,7 +18819,9 @@ function filterCal() {
 
 // ===== 标记漏杀（持久化到 localStorage） =====
 var MARKED_KEY = "push_marked_leaks";
+var SOLD_OUT_KEY = "push_sold_out";
 var markedItems = JSON.parse(localStorage.getItem(MARKED_KEY) || "[]");
+var soldOutItems = JSON.parse(localStorage.getItem(SOLD_OUT_KEY) || "[]");
 
 function doMark(btn, name, reason) {
     if (btn.classList.contains("marked")) {
@@ -18811,6 +18867,26 @@ function updateCalSummary() {
     html += '<div class="cal-sum-item" style="color:var(--c-text-s);margin-top:6px">已标记：' + markedItems.map(function (i) { return i.name; }).join("、") + '</div>';
     items.innerHTML = html;
     btn.style.display = "block";
+}
+
+// ===== 标记售罄 =====
+function doSoldOut(btn, cardId) {
+    var card = document.getElementById(cardId);
+    if (!card) return;
+    var name = (card.querySelector(".card-name") || {}).textContent || cardId;
+    if (btn.classList.contains("sold-out-marked")) {
+        btn.classList.remove("sold-out-marked");
+        btn.textContent = "⚠️ 标记售罄";
+        card.classList.remove("sold-out");
+        soldOutItems = soldOutItems.filter(function (i) { return i.id !== cardId; });
+    } else {
+        btn.classList.add("sold-out-marked");
+        btn.textContent = "已售罄";
+        card.classList.add("sold-out");
+        soldOutItems.push({ id: cardId, name: name, time: new Date().toISOString() });
+    }
+    localStorage.setItem(SOLD_OUT_KEY, JSON.stringify(soldOutItems));
+    toast("售罄标记已保存，下次管线自动过滤");
 }
 
 function applyCal() {
