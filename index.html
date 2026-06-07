@@ -18398,7 +18398,7 @@ body {
 </div>
 
 
-<div class="footer">最近更新：2026-06-07 15:44 · 那与航优选 v3</div>
+<div class="footer">最近更新：2026-06-07 16:01 · 那与航优选 v3</div>
 
 </div>
 
@@ -18590,6 +18590,12 @@ function doOpen(btn, cardId) {
     var card = document.getElementById(cardId);
     if (!card || card.classList.contains("done")) return;
 
+    // 🔴 先打开链接（必须在用户点击同步上下文中，否则被弹窗拦截）
+    var link = card.getAttribute("data-link");
+    if (link && link !== "#") {
+        window.open(link, "_blank");
+    }
+
     // 标记完成
     var id = cardId.replace("r", "");
     var d = JSON.parse(localStorage.getItem(KEY) || "[]");
@@ -18602,7 +18608,7 @@ function doOpen(btn, cardId) {
     card.classList.add("done");
     addDoneRibbon(card);
 
-    // 复制话术
+    // 复制话术（异步，不阻塞链接跳转）
     var copyTxt = card.getAttribute("data-copy") || "";
     copyToClipboard(copyTxt, function () {
         toast("已复制话术 + 标记开团");
@@ -18615,12 +18621,6 @@ function doOpen(btn, cardId) {
     if (copyBtn && !copyBtn.classList.contains("copied")) {
         copyBtn.textContent = "已复制 ✓";
         copyBtn.classList.add("copied");
-    }
-
-    // 打开链接
-    var link = card.getAttribute("data-link");
-    if (link && link !== "#") {
-        setTimeout(function () { window.open(link, "_blank"); }, 300);
     }
 }
 
