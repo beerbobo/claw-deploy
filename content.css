@@ -1,0 +1,592 @@
+/* ============================================
+   四时植语 · 样式 v2 — 三档响应式 + hover
+   Design Tokens 复用推品页体系 (push.css)
+   参考原型: commerce/content-demo.html v2
+   交接单版本: docs/四时植语-开发交接单.html v2
+   ============================================ */
+
+/* ===== Design Tokens — 与 push.css 一致 ===== */
+:root {
+  --c-bg: #ffffff;
+  --c-surf: #f9fbf7;
+  --c-surf-alt: #f5f2ec;
+  --c-text: #2c2c2a;
+  --c-text-s: #5f5e5a;
+  --c-text-h: #8b8680;
+  --c-line: #e8e6dc;
+  --c-line-h: #d3d1c7;
+  --c-brand: #2d5a3d;
+  --c-accent: #639922;
+  --c-accent-lt: #eaf3de;
+  --c-warn: #ba7517;
+  --c-warn-lt: #faeeda;
+  --c-danger: #a32d2d;
+  --c-danger-lt: #fcebeb;
+  --c-done: #888780;
+  --c-done-lt: #f1efe8;
+
+  /* 四季色 */
+  --c-spring: #88A84E;
+  --c-spring-lt: #f1f7e8;
+  --c-summer: #5A8F3E;
+  --c-summer-lt: #edf4e7;
+  --c-autumn: #BA7517;
+  --c-autumn-lt: #faf0e2;
+  --c-winter: #4A7068;
+  --c-winter-lt: #e8f0ed;
+
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --fs-base: 16px;
+  --fs-h1: 22px;
+  --fs-h2: 17px;
+  --fs-body: 15px;
+  --fs-meta: 14px;
+  --fs-sm: 13px;
+  --fs-xs: 12px;
+  --sp-card: 16px;
+  --sp-sec: 20px;
+  --r: 12px;
+  --r-sm: 8px;
+  --r-xs: 6px;
+}
+
+/* ===== 全局 ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: var(--font);
+  font-size: var(--fs-base);
+  background: var(--c-surf);
+  color: var(--c-text);
+  line-height: 1.5;
+  max-width: 500px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ===== Page Grid（响应式容器） ===== */
+.page-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== Top Bar ===== */
+.top-bar {
+  background: var(--c-brand);
+  color: #fff;
+  padding: 14px var(--sp-card);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.top-bar a {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  font-size: var(--fs-sm);
+  white-space: nowrap;
+}
+.top-bar h1 { font-size: var(--fs-h1); font-weight: 600; }
+.top-bar .sub { font-size: var(--fs-xs); opacity: 0.75; margin-top: 1px; }
+
+/* ===== Season Cards ===== */
+.season-strip {
+  padding: var(--sp-card) var(--sp-card) 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.season-card {
+  background: #fff;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-sm);
+  padding: 12px 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+.season-card:active { transform: scale(0.96); }
+.season-card .icon { font-size: 28px; display: block; margin-bottom: 4px; }
+.season-card .label { font-size: var(--fs-body); font-weight: 600; }
+.season-card .months { font-size: var(--fs-xs); color: var(--c-text-h); margin-top: 2px; }
+
+.season-card[data-season="spring"].active {
+  background: var(--c-spring-lt);
+  border-color: var(--c-spring);
+  box-shadow: 0 0 0 1px var(--c-spring);
+}
+.season-card[data-season="summer"].active {
+  background: var(--c-summer-lt);
+  border-color: var(--c-summer);
+  box-shadow: 0 0 0 1px var(--c-summer);
+}
+.season-card[data-season="autumn"].active {
+  background: var(--c-autumn-lt);
+  border-color: var(--c-autumn);
+  box-shadow: 0 0 0 1px var(--c-autumn);
+}
+.season-card[data-season="winter"].active {
+  background: var(--c-winter-lt);
+  border-color: var(--c-winter);
+  box-shadow: 0 0 0 1px var(--c-winter);
+}
+
+.season-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+.season-card[data-season="spring"] .season-badge { background: var(--c-spring); color: #fff; }
+.season-card[data-season="summer"] .season-badge { background: var(--c-summer); color: #fff; }
+.season-card[data-season="autumn"] .season-badge { background: var(--c-autumn); color: #fff; }
+.season-card[data-season="winter"] .season-badge { background: var(--c-winter); color: #fff; }
+
+/* ===== Month Picker ===== */
+.month-section {
+  margin: var(--sp-sec) var(--sp-card) 0;
+}
+.month-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.month-header .current {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  color: var(--c-text);
+}
+.month-header .nav-arrows { display: flex; gap: 2px; }
+.month-header .nav-arrows button {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 1px solid var(--c-line);
+  background: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  color: var(--c-text-s);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+}
+.month-header .nav-arrows button:active { background: var(--c-surf-alt); }
+
+/* Mini Calendar */
+.mini-cal {
+  background: #fff;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.cal-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: var(--c-surf-alt);
+  padding: 6px 0;
+  text-align: center;
+  font-size: var(--fs-xs);
+  color: var(--c-text-h);
+  font-weight: 500;
+}
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 4px 8px 10px;
+  gap: 2px 0;
+}
+.cal-cell {
+  text-align: center;
+  padding: 6px 0;
+  font-size: var(--fs-meta);
+  border-radius: var(--r-xs);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.15s;
+  color: var(--c-text);
+}
+.cal-cell.empty { cursor: default; }
+.cal-cell.has-content::after {
+  content: '';
+  display: block;
+  width: 4px; height: 4px;
+  background: var(--c-accent);
+  border-radius: 50%;
+  margin: 2px auto 0;
+}
+.cal-cell.has-content.active::after { background: #fff; }
+.cal-cell.today {
+  background: var(--c-surf-alt);
+  font-weight: 700;
+}
+.cal-cell.active {
+  background: var(--c-brand);
+  color: #fff;
+  font-weight: 600;
+}
+.cal-cell:not(.empty):active { background: var(--c-accent-lt); }
+.cal-cell.active:active { background: var(--c-brand); }
+
+.month-tabs {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+}
+.month-tab {
+  flex: 1;
+  text-align: center;
+  padding: 6px 0;
+  border-radius: var(--r-xs);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid var(--c-line);
+  color: var(--c-text-s);
+  transition: all 0.15s;
+}
+.month-tab.active {
+  background: var(--c-brand);
+  color: #fff;
+  border-color: var(--c-brand);
+  font-weight: 600;
+}
+
+/* ===== Region Chips ===== */
+.region-strip {
+  margin: var(--sp-sec) var(--sp-card) 0;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.region-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid var(--c-line);
+  color: var(--c-text-s);
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.region-chip .zone {
+  font-size: 10px;
+  color: var(--c-text-h);
+  background: var(--c-surf-alt);
+  padding: 1px 6px;
+  border-radius: 8px;
+}
+.region-chip.active {
+  background: var(--c-brand);
+  color: #fff;
+  border-color: var(--c-brand);
+}
+.region-chip.active .zone {
+  background: rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.9);
+}
+.region-chip:active { transform: scale(0.96); }
+
+/* ===== Section Context ===== */
+.section-ctx {
+  margin: var(--sp-sec) var(--sp-card) 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-ctx .ctx-label {
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--c-text);
+}
+.section-ctx .ctx-count {
+  font-size: var(--fs-xs);
+  color: var(--c-text-h);
+  background: var(--c-surf-alt);
+  padding: 2px 10px;
+  border-radius: 10px;
+}
+
+/* ===== Content Cards ===== */
+.content-area {
+  margin: 12px var(--sp-card) var(--sp-sec);
+}
+.content-group { margin-bottom: var(--sp-sec); }
+.content-group-title {
+  font-size: var(--fs-meta);
+  font-weight: 600;
+  color: var(--c-text-s);
+  margin-bottom: 8px;
+  padding-left: 2px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.plant-card {
+  background: #fff;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r);
+  padding: var(--sp-card);
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+.plant-card:active { background: var(--c-surf-alt); }
+.plant-card .card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.plant-card .plant-icon { font-size: 24px; }
+.plant-card .plant-name {
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--c-text);
+  flex: 1;
+}
+.plant-card .plant-arrow {
+  font-size: 14px;
+  color: var(--c-text-h);
+  transition: transform 0.25s;
+}
+.plant-card.expanded .plant-arrow { transform: rotate(90deg); }
+
+.plant-card .card-summary {
+  font-size: var(--fs-meta);
+  color: var(--c-text-s);
+  line-height: 1.5;
+  margin-left: 34px;
+}
+
+.plant-card .card-detail {
+  display: none;
+  margin-top: 12px;
+  margin-left: 34px;
+  padding-top: 12px;
+  border-top: 1px solid var(--c-line);
+  font-size: var(--fs-meta);
+  color: var(--c-text-s);
+  line-height: 1.7;
+  white-space: pre-line;
+}
+.plant-card.expanded .card-detail { display: block; }
+
+.plant-card .card-tags {
+  margin-left: 34px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.card-tag {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: var(--c-accent-lt);
+  color: var(--c-accent);
+  font-weight: 500;
+}
+
+.plant-card .copy-btn {
+  display: none;
+  margin-top: 10px;
+  margin-left: 34px;
+  padding: 6px 14px;
+  border-radius: var(--r-xs);
+  border: 1px solid var(--c-accent);
+  background: var(--c-accent-lt);
+  color: var(--c-accent);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  font-family: var(--font);
+  transition: all 0.15s;
+}
+.plant-card.expanded .copy-btn { display: inline-block; }
+.copy-btn:active { background: var(--c-accent); color: #fff; }
+.copy-btn.copied { background: var(--c-brand); color: #fff; border-color: var(--c-brand); }
+
+/* ===== Empty State ===== */
+.empty-state {
+  text-align: center;
+  padding: 48px 16px;
+  color: var(--c-text-h);
+}
+.empty-state .icon { font-size: 40px; display: block; margin-bottom: 12px; }
+.empty-state .text { font-size: var(--fs-meta); }
+
+/* ===== Search ===== */
+.search-bar {
+  margin: var(--sp-sec) var(--sp-card) var(--sp-card);
+  position: relative;
+}
+.search-bar input {
+  width: 100%;
+  padding: 10px 16px 10px 38px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--c-line);
+  font-size: var(--fs-meta);
+  font-family: var(--font);
+  background: #fff;
+  color: var(--c-text);
+  outline: none;
+  transition: border 0.2s;
+}
+.search-bar input:focus { border-color: var(--c-accent); }
+.search-bar .search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: var(--c-text-h);
+  pointer-events: none;
+}
+
+/* ===== Toast ===== */
+.toast {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--c-text);
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-size: var(--fs-sm);
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; }
+
+/* ============================================
+   响应式设计 —— 三档断点
+   ============================================ */
+
+/* -------- 平板 ≥640px -------- */
+@media (min-width: 640px) {
+  body { max-width: 768px; }
+
+  .season-strip { gap: 12px; }
+  .season-card { padding: 16px 12px; }
+  .season-card .icon { font-size: 32px; }
+
+  .cal-cell { padding: 8px 0; font-size: var(--fs-body); }
+  .cal-weekdays { font-size: var(--fs-sm); padding: 8px 0; }
+
+  .content-area {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .content-group {
+    grid-column: 1 / -1;
+    display: contents;
+  }
+  .content-group-title {
+    grid-column: 1 / -1;
+    display: flex;
+  }
+  .plant-card { margin-bottom: 0; }
+  .empty-state { grid-column: 1 / -1; }
+}
+
+/* -------- 桌面 ≥1024px -------- */
+@media (min-width: 1024px) {
+  body {
+    max-width: 1200px;
+    padding: 0 24px;
+  }
+
+  .top-bar {
+    padding: 16px 24px;
+    border-radius: 0;
+  }
+
+  .page-grid {
+    flex-direction: row;
+    gap: 24px;
+    margin-top: var(--sp-sec);
+  }
+
+  .page-left {
+    width: 320px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 72px;
+    align-self: flex-start;
+    max-height: calc(100dvh - 72px);
+    overflow-y: auto;
+    padding-bottom: var(--sp-sec);
+  }
+
+  .page-right {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .season-card { padding: 18px 12px; }
+  .season-card .icon { font-size: 36px; }
+  .season-card .label { font-size: 17px; }
+  .season-card .months { font-size: var(--fs-sm); }
+
+  .content-area {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .content-group { display: contents; }
+  .content-group-title { grid-column: 1 / -1; display: flex; }
+
+  .search-bar { margin: 0 0 var(--sp-sec); }
+  .search-bar input { font-size: var(--fs-body); padding: 12px 16px 12px 42px; }
+
+  /* 桌面 hover 效果（触屏无 hover） */
+  @media (hover: hover) {
+    .season-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    .season-card:active { transform: scale(0.98); }
+    .region-chip:hover {
+      background: var(--c-surf-alt);
+      border-color: var(--c-line-h);
+    }
+    .region-chip.active:hover {
+      background: var(--c-brand);
+      border-color: var(--c-brand);
+    }
+    .month-tab:hover {
+      background: var(--c-surf-alt);
+    }
+    .month-tab.active:hover {
+      background: var(--c-brand);
+    }
+    .plant-card:hover {
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border-color: var(--c-line-h);
+    }
+    .copy-btn:hover {
+      background: var(--c-accent);
+      color: #fff;
+    }
+    .month-header .nav-arrows button:hover {
+      background: var(--c-surf-alt);
+      border-color: var(--c-line-h);
+    }
+    .cal-cell:not(.empty):hover:not(.active) {
+      background: var(--c-accent-lt);
+    }
+  }
+}

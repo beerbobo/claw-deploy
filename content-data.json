@@ -1,0 +1,918 @@
+{
+  "_meta": {
+    "generated_by": "commerce/build_content_data.py",
+    "data_source": "shared/plants.json + shared/my_garden.json (SSOT)",
+    "rules_source": "strategy_rules.json → content_engine",
+    "total_items": 67,
+    "please_note": "此文件为计算产物，不要手动编辑。更新数据源后重新运行 build_content_data.py"
+  },
+  "seasons": [
+    {
+      "id": "spring",
+      "label": "春",
+      "icon": "🌸",
+      "months": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "summer",
+      "label": "夏",
+      "icon": "☀️",
+      "months": [
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "autumn",
+      "label": "秋",
+      "icon": "🍂",
+      "months": [
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "winter",
+      "label": "冬",
+      "icon": "❄️",
+      "months": [
+        12,
+        1,
+        2
+      ]
+    }
+  ],
+  "regions": [
+    {
+      "id": "general",
+      "label": "通用",
+      "zone": "全温区"
+    },
+    {
+      "id": "east",
+      "label": "华东",
+      "zone": "7-9区"
+    },
+    {
+      "id": "south",
+      "label": "华南",
+      "zone": "10-11区"
+    },
+    {
+      "id": "southwest",
+      "label": "西南",
+      "zone": "8-10区"
+    },
+    {
+      "id": "northeast",
+      "label": "东北",
+      "zone": "3-6区"
+    }
+  ],
+  "content": [
+    {
+      "plant": "仙客来",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "bloom",
+      "summary": "冬季室内开花女王！能从12月开到次年4月，一盆点亮整个冬天",
+      "detail": "冬季室内开花女王！能从12月开到次年4月，一盆点亮整个冬天",
+      "tags": [
+        "花期长",
+        "球根",
+        "年宵花"
+      ]
+    },
+    {
+      "plant": "仙客来",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "plant",
+      "summary": "浇水只能浸盆从底部给水！浇到球心必死。夏天会休眠，叶子枯了别…",
+      "detail": "浇水只能浸盆从底部给水！浇到球心必死。夏天会休眠，叶子枯了别扔。\n\n博主经验\n年宵花爆款，花期长达半年，夏天会休眠",
+      "tags": [
+        "花期长",
+        "球根",
+        "年宵花"
+      ]
+    },
+    {
+      "plant": "加拿大紫荆",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "bloom",
+      "summary": "满树紫红小花直接开在树干上！春天的奇观",
+      "detail": "满树紫红小花直接开在树干上！春天的奇观",
+      "tags": [
+        "耐热",
+        "需春化"
+      ]
+    },
+    {
+      "plant": "原生郁金香",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "plant",
+      "summary": "小巧精致可复花，比常规郁金香更省心",
+      "detail": "小巧精致可复花，比常规郁金香更省心\n\n博主经验\n小巧精致，可复花",
+      "tags": [
+        "香花",
+        "耐寒",
+        "球根"
+      ]
+    },
+    {
+      "plant": "多肉",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "care",
+      "summary": "生长旺季，可换盆浇水",
+      "detail": "【spring期养护要点】\n生长旺季，可换盆浇水\n\n日常养护\n光照：全日照，缺光会徒长\n浇水：干透浇透，宁干勿湿\n土壤：颗粒土为主，泥炭占比≤30%\n施肥：薄肥勤施，稀释到1/4浓度\n修剪：撸底叶促爆侧，砍头繁殖\n\n博主经验\n南方度夏是最大挑战，遮阴+通风；配土颗粒土占比60-70%；新手推荐：吉娃娃、白牡丹、冬美人",
+      "tags": [
+        "新手友好",
+        "需遮阴"
+      ]
+    },
+    {
+      "plant": "小苍兰",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "bloom",
+      "summary": "春天开花，超香",
+      "detail": "春天开花，超香",
+      "tags": [
+        "香花"
+      ]
+    },
+    {
+      "plant": "山桃草",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "bloom",
+      "summary": "花像千纸鹤，春到深秋",
+      "detail": "花像千纸鹤，春到深秋",
+      "tags": [
+        "耐热"
+      ]
+    },
+    {
+      "plant": "报春/樱草",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "bloom",
+      "summary": "早春第一抹颜色！宣告冬天结束",
+      "detail": "早春第一抹颜色！宣告冬天结束",
+      "tags": [
+        "香花"
+      ]
+    },
+    {
+      "plant": "报春/樱草",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "plant",
+      "summary": "喜凉爽湿润怕高温，早春开花，部分品种有香味",
+      "detail": "喜凉爽湿润怕高温，早春开花，部分品种有香味\n\n博主经验\n早春爆款，品种超全",
+      "tags": [
+        "香花"
+      ]
+    },
+    {
+      "plant": "月季",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "care",
+      "summary": "重剪+抹芽，预防白粉病",
+      "detail": "【spring期养护要点】\n重剪+抹芽，预防白粉病\n\n日常养护\n光照：全日照，最少6小时直射光\n浇水：见干见湿，避免积水\n土壤：疏松透气，腐叶土+园土+河沙 3:2:1\n施肥：花期前用高磷肥，日常用均衡肥\n修剪：早春重剪，花后轻剪促复花\n\n博主经验\n阳台首选微型月季，大花月季占地太大；通风是防病第一要素；新手推荐：果汁阳台、金丝雀、躲躲藏藏",
+      "tags": [
+        "新手友好"
+      ]
+    },
+    {
+      "plant": "木香",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "bloom",
+      "summary": "春天花瀑布，香飘满园",
+      "detail": "春天花瀑布，香飘满园",
+      "tags": [
+        "香花",
+        "耐热",
+        "藤本"
+      ]
+    },
+    {
+      "plant": "朱顶红",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "care",
+      "summary": "花期，大花球一年能开2-3次",
+      "detail": "【spring期养护要点】\n花期，大花球一年能开2-3次\n\n日常养护\n光照：明亮散射光，避免正午暴晒\n浇水：生长期保持湿润，休眠期控水\n土壤：疏松透气，腐叶土+园土+珍珠岩\n施肥：花前磷钾肥为主\n修剪：花后剪花梗不剪叶\n\n博主经验\n花球越大花越多，选球径≥28cm的；新手推荐：花叶双绝、阿弗雷；进口球（南非/荷兰）比国产球开花质量好",
+      "tags": [
+        "耐热",
+        "球根",
+        "新手友好"
+      ]
+    },
+    {
+      "plant": "枫树",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "bloom",
+      "summary": "春天的红叶秋天的金叶！盆栽日本枫就是一件活的艺术品",
+      "detail": "春天的红叶秋天的金叶！盆栽日本枫就是一件活的艺术品",
+      "tags": [
+        "需遮阴"
+      ]
+    },
+    {
+      "plant": "棉枣儿",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "bloom",
+      "summary": "小蓝花串！早春球根的小清新",
+      "detail": "小蓝花串！早春球根的小清新",
+      "tags": [
+        "球根"
+      ]
+    },
+    {
+      "plant": "洋水仙",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "bloom",
+      "summary": "春天最早开花的球根！黄色喇叭花宣告冬天结束",
+      "detail": "春天最早开花的球根！黄色喇叭花宣告冬天结束",
+      "tags": [
+        "香花",
+        "球根"
+      ]
+    },
+    {
+      "plant": "洋水仙",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "plant",
+      "summary": "比郁金香省心，地栽年年复花不退化，无需起球",
+      "detail": "比郁金香省心，地栽年年复花不退化，无需起球\n\n博主经验\n地栽年年复花，比郁金香省心",
+      "tags": [
+        "香花",
+        "球根"
+      ]
+    },
+    {
+      "plant": "矮牵牛",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "bloom",
+      "summary": "爆花球之王！吊盆养一盆开上百朵，从春开到秋",
+      "detail": "爆花球之王！吊盆养一盆开上百朵，从春开到秋",
+      "tags": [
+        "耐热",
+        "爆花"
+      ]
+    },
+    {
+      "plant": "粉色马蹄莲",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "bloom",
+      "summary": "春天开花，花像马蹄",
+      "detail": "春天开花，花像马蹄",
+      "tags": []
+    },
+    {
+      "plant": "绣球",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "care",
+      "summary": "新芽萌发期，追一次缓释肥，检查越冬芽",
+      "detail": "【spring期养护要点】\n新芽萌发期，追一次缓释肥，检查越冬芽\n\n日常养护\n光照：半阴，避开正午直射\n浇水：保持土壤湿润，夏季每天浇水\n土壤：酸性土（调蓝关键），pH 5.0-5.5\n施肥：春季花前用高磷肥，花后追均衡肥\n修剪：花后立即修剪，花下第2对芽点上方1cm处剪\n\n博主经验\n调蓝秘诀：土壤pH<5.5 + 硫酸铝灌根，2周一次；北方种植需春化处理，华南不用；无尽夏可以新老枝开花，其他品种只开老枝",
+      "tags": [
+        "耐热",
+        "需春化",
+        "需遮阴"
+      ]
+    },
+    {
+      "plant": "蓝莓",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "bloom",
+      "summary": "春天看花夏天吃果秋天红叶！一盆三季有看头",
+      "detail": "春天看花夏天吃果秋天红叶！一盆三季有看头",
+      "tags": [
+        "新手友好"
+      ]
+    },
+    {
+      "plant": "蓝莓",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "care",
+      "summary": "开花期，异花授粉需要2个品种",
+      "detail": "【spring期养护要点】\n开花期，异花授粉需要2个品种\n\n日常养护\n光照：全日照，最少6小时\n浇水：保持湿润但排水好，忌积水\n土壤：强酸性土 pH 4.5-5.0，用进口泥炭+松针\n施肥：花期用硼肥，果期用钾肥\n修剪：3年后开始修剪，剪老枝留新枝\n\n博主经验\n必须种2个不同品种才能授粉结果；新手推荐：奥尼尔+薄雾组合；南方需选低冷量品种（如绿宝石）",
+      "tags": [
+        "新手友好"
+      ]
+    },
+    {
+      "plant": "蓝雪花",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "bloom",
+      "summary": "蓝色开花机器！从春爆到秋，阳台党新手入坑首选",
+      "detail": "蓝色开花机器！从春爆到秋，阳台党新手入坑首选",
+      "tags": [
+        "耐热",
+        "爆花",
+        "新手友好"
+      ]
+    },
+    {
+      "plant": "角堇",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "bloom",
+      "summary": "冬日小精灵！盆栽五颜六色超可爱，南方从秋开到春",
+      "detail": "冬日小精灵！盆栽五颜六色超可爱，南方从秋开到春",
+      "tags": []
+    },
+    {
+      "plant": "郁金香",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "bloom",
+      "summary": "春天第一抹色彩！杯状花型优雅，种一片像荷兰花田",
+      "detail": "春天第一抹色彩！杯状花型优雅，种一片像荷兰花田",
+      "tags": [
+        "球根"
+      ]
+    },
+    {
+      "plant": "郁金香",
+      "season": "spring",
+      "region": "general",
+      "month": 3,
+      "type": "plant",
+      "summary": "南方复花困难（需要冬季低温8周以上），建议当一年生种，秋天买…",
+      "detail": "南方复花困难（需要冬季低温8周以上），建议当一年生种，秋天买新球。盆栽深种覆土5cm。\n\n博主经验\n秋植球根爆款，品种超全",
+      "tags": [
+        "球根"
+      ]
+    },
+    {
+      "plant": "三角梅",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "plant",
+      "summary": "光照是开花唯一变量：每天6小时直射光+花期适当控水=爆花。5…",
+      "detail": "光照是开花唯一变量：每天6小时直射光+花期适当控水=爆花。5℃以下入室防冻。\n\n博主经验\n控水就爆花，耐热王者",
+      "tags": [
+        "耐热",
+        "爆花"
+      ]
+    },
+    {
+      "plant": "中华桔梗",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "plant",
+      "summary": "宿根多年生，耐寒-20℃，东北户外过冬。光照充足花苞多。",
+      "detail": "宿根多年生，耐寒-20℃，东北户外过冬。光照充足花苞多。",
+      "tags": [
+        "耐寒",
+        "耐热",
+        "多年生"
+      ]
+    },
+    {
+      "plant": "剑兰",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "plant",
+      "summary": "深埋10cm，花后养球不剪叶，防倒伏需支撑",
+      "detail": "深埋10cm，花后养球不剪叶，防倒伏需支撑",
+      "tags": [
+        "耐热",
+        "球根"
+      ]
+    },
+    {
+      "plant": "加拿大紫荆",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "plant",
+      "summary": "心形新叶绝美，小院子一棵就够了，需春化才能开花",
+      "detail": "心形新叶绝美，小院子一棵就够了，需春化才能开花\n\n博主经验\n心形新叶绝美",
+      "tags": [
+        "耐热",
+        "需春化"
+      ]
+    },
+    {
+      "plant": "合欢",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "bloom",
+      "summary": "粉色绒花像云朵！夏日最梦幻的树",
+      "detail": "粉色绒花像云朵！夏日最梦幻的树",
+      "tags": [
+        "耐热"
+      ]
+    },
+    {
+      "plant": "合欢",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "plant",
+      "summary": "见干见湿，喜温暖湿润",
+      "detail": "见干见湿，喜温暖湿润",
+      "tags": [
+        "耐热"
+      ]
+    },
+    {
+      "plant": "向日葵",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "plant",
+      "summary": "深盆防倒伏，播后60-80天开花",
+      "detail": "深盆防倒伏，播后60-80天开花",
+      "tags": [
+        "耐寒",
+        "耐热"
+      ]
+    },
+    {
+      "plant": "多肉",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "care",
+      "summary": "半休眠，遮阴控水，防黑腐",
+      "detail": "【summer期养护要点】\n半休眠，遮阴控水，防黑腐\n\n日常养护\n光照：全日照，缺光会徒长\n浇水：干透浇透，宁干勿湿\n土壤：颗粒土为主，泥炭占比≤30%\n施肥：薄肥勤施，稀释到1/4浓度\n修剪：撸底叶促爆侧，砍头繁殖\n\n博主经验\n南方度夏是最大挑战，遮阴+通风；配土颗粒土占比60-70%；新手推荐：吉娃娃、白牡丹、冬美人",
+      "tags": [
+        "新手友好",
+        "需遮阴"
+      ]
+    },
+    {
+      "plant": "大丽花",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "bloom",
+      "summary": "夏秋花园女王！花大到离谱，品种多到选择困难",
+      "detail": "夏秋花园女王！花大到离谱，品种多到选择困难",
+      "tags": [
+        "需遮阴"
+      ]
+    },
+    {
+      "plant": "大丽花",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "plant",
+      "summary": "深栽，需支撑防倒伏，花后剪残花促复花",
+      "detail": "深栽，需支撑防倒伏，花后剪残花促复花",
+      "tags": [
+        "需遮阴"
+      ]
+    },
+    {
+      "plant": "天竺葵",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "plant",
+      "summary": "阳台经典花，夏天控水避雨才能安全度夏",
+      "detail": "阳台经典花，夏天控水避雨才能安全度夏\n\n博主经验\n阳台经典，四季开花",
+      "tags": [
+        "需遮阴"
+      ]
+    },
+    {
+      "plant": "太阳花",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "bloom",
+      "summary": "夏天专属，开成花毯",
+      "detail": "夏天专属，开成花毯",
+      "tags": [
+        "爆花"
+      ]
+    },
+    {
+      "plant": "太阳花",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "plant",
+      "summary": "超级皮实：沙土+暴晒+少浇水=开爆。重瓣品种颜值超高像迷你牡…",
+      "detail": "超级皮实：沙土+暴晒+少浇水=开爆。重瓣品种颜值超高像迷你牡丹。",
+      "tags": [
+        "爆花"
+      ]
+    },
+    {
+      "plant": "山乌龟",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "plant",
+      "summary": "冬天会掉光叶子休眠，别当死了丢了。浇水宁少勿多，球根烂了就没…",
+      "detail": "冬天会掉光叶子休眠，别当死了丢了。浇水宁少勿多，球根烂了就没了。",
+      "tags": [
+        "球根",
+        "藤本"
+      ]
+    },
+    {
+      "plant": "彩叶芋",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "plant",
+      "summary": "观叶植物天花板，喜湿润怕干燥，冬天收球放室内",
+      "detail": "观叶植物天花板，喜湿润怕干燥，冬天收球放室内\n\n博主经验\n观叶植物天花板，越热越美",
+      "tags": [
+        "耐热"
+      ]
+    },
+    {
+      "plant": "无忧草",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "bloom",
+      "summary": "橘黄色大花！夏季花园的暖色担当",
+      "detail": "橘黄色大花！夏季花园的暖色担当",
+      "tags": [
+        "耐热"
+      ]
+    },
+    {
+      "plant": "无花果",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "bloom",
+      "summary": "盆栽也能结满果子！从夏吃到秋，自己种的最甜",
+      "detail": "盆栽也能结满果子！从夏吃到秋，自己种的最甜",
+      "tags": [
+        "耐热"
+      ]
+    },
+    {
+      "plant": "无花果",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "plant",
+      "summary": "见干见湿，冬季可重剪控制株型，盆栽需大盆",
+      "detail": "见干见湿，冬季可重剪控制株型，盆栽需大盆",
+      "tags": [
+        "耐热"
+      ]
+    },
+    {
+      "plant": "昙花",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "plant",
+      "summary": "越不管越好！老叶片才出花，新叶不开。养护极省心，宁干勿湿。",
+      "detail": "越不管越好！老叶片才出花，新叶不开。养护极省心，宁干勿湿。",
+      "tags": []
+    },
+    {
+      "plant": "月季",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "care",
+      "summary": "花期，注意红蜘蛛和蚜虫",
+      "detail": "【summer期养护要点】\n花期，注意红蜘蛛和蚜虫\n\n日常养护\n光照：全日照，最少6小时直射光\n浇水：见干见湿，避免积水\n土壤：疏松透气，腐叶土+园土+河沙 3:2:1\n施肥：花期前用高磷肥，日常用均衡肥\n修剪：早春重剪，花后轻剪促复花\n\n博主经验\n阳台首选微型月季，大花月季占地太大；通风是防病第一要素；新手推荐：果汁阳台、金丝雀、躲躲藏藏",
+      "tags": [
+        "新手友好"
+      ]
+    },
+    {
+      "plant": "木槿",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "bloom",
+      "summary": "夏天开到秋，花量大",
+      "detail": "夏天开到秋，花量大",
+      "tags": [
+        "耐热"
+      ]
+    },
+    {
+      "plant": "朱顶红",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "care",
+      "summary": "叶片生长期，追氮肥养球",
+      "detail": "【summer期养护要点】\n叶片生长期，追氮肥养球\n\n日常养护\n光照：明亮散射光，避免正午暴晒\n浇水：生长期保持湿润，休眠期控水\n土壤：疏松透气，腐叶土+园土+珍珠岩\n施肥：花前磷钾肥为主\n修剪：花后剪花梗不剪叶\n\n博主经验\n花球越大花越多，选球径≥28cm的；新手推荐：花叶双绝、阿弗雷；进口球（南非/荷兰）比国产球开花质量好",
+      "tags": [
+        "耐热",
+        "球根",
+        "新手友好"
+      ]
+    },
+    {
+      "plant": "杜鹃",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "plant",
+      "summary": "盆栽难度高：必须用酸性土(pH4.5-5.5)，北方自来水浇…",
+      "detail": "盆栽难度高：必须用酸性土(pH4.5-5.5)，北方自来水浇了必黄叶。花后剪残花会复花。\n\n博主经验\n早春花量惊人",
+      "tags": [
+        "年宵花"
+      ]
+    },
+    {
+      "plant": "松果菊",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "bloom",
+      "summary": "松果形花心超特别！从夏开到秋，蝴蝶蜜蜂最爱",
+      "detail": "松果形花心超特别！从夏开到秋，蝴蝶蜜蜂最爱",
+      "tags": [
+        "耐热"
+      ]
+    },
+    {
+      "plant": "枫树",
+      "season": "summer",
+      "region": "general",
+      "month": 6,
+      "type": "plant",
+      "summary": "焦边=晒多了或水少了，放上午阳光处最完美。盆栽选矮生品种（出…",
+      "detail": "焦边=晒多了或水少了，放上午阳光处最完美。盆栽选矮生品种（出猩猩/珊瑚阁）。",
+      "tags": [
+        "需遮阴"
+      ]
+    },
+    {
+      "plant": "多肉",
+      "season": "autumn",
+      "region": "general",
+      "month": 9,
+      "type": "care",
+      "summary": "二次生长季，最美的时候",
+      "detail": "【autumn期养护要点】\n二次生长季，最美的时候\n\n日常养护\n光照：全日照，缺光会徒长\n浇水：干透浇透，宁干勿湿\n土壤：颗粒土为主，泥炭占比≤30%\n施肥：薄肥勤施，稀释到1/4浓度\n修剪：撸底叶促爆侧，砍头繁殖\n\n博主经验\n南方度夏是最大挑战，遮阴+通风；配土颗粒土占比60-70%；新手推荐：吉娃娃、白牡丹、冬美人",
+      "tags": [
+        "新手友好",
+        "需遮阴"
+      ]
+    },
+    {
+      "plant": "大花四照花",
+      "season": "autumn",
+      "region": "general",
+      "month": 9,
+      "type": "bloom",
+      "summary": "花苞片像白色蝴蝶停在枝头！秋天红叶也绝美",
+      "detail": "花苞片像白色蝴蝶停在枝头！秋天红叶也绝美",
+      "tags": []
+    },
+    {
+      "plant": "月季",
+      "season": "autumn",
+      "region": "general",
+      "month": 9,
+      "type": "care",
+      "summary": "秋花季，适当追肥",
+      "detail": "【autumn期养护要点】\n秋花季，适当追肥\n\n日常养护\n光照：全日照，最少6小时直射光\n浇水：见干见湿，避免积水\n土壤：疏松透气，腐叶土+园土+河沙 3:2:1\n施肥：花期前用高磷肥，日常用均衡肥\n修剪：早春重剪，花后轻剪促复花\n\n博主经验\n阳台首选微型月季，大花月季占地太大；通风是防病第一要素；新手推荐：果汁阳台、金丝雀、躲躲藏藏",
+      "tags": [
+        "新手友好"
+      ]
+    },
+    {
+      "plant": "朱顶红",
+      "season": "autumn",
+      "region": "general",
+      "month": 9,
+      "type": "care",
+      "summary": "停肥控水促休眠",
+      "detail": "【autumn期养护要点】\n停肥控水促休眠\n\n日常养护\n光照：明亮散射光，避免正午暴晒\n浇水：生长期保持湿润，休眠期控水\n土壤：疏松透气，腐叶土+园土+珍珠岩\n施肥：花前磷钾肥为主\n修剪：花后剪花梗不剪叶\n\n博主经验\n花球越大花越多，选球径≥28cm的；新手推荐：花叶双绝、阿弗雷；进口球（南非/荷兰）比国产球开花质量好",
+      "tags": [
+        "耐热",
+        "球根",
+        "新手友好"
+      ]
+    },
+    {
+      "plant": "绣球",
+      "season": "autumn",
+      "region": "general",
+      "month": 9,
+      "type": "care",
+      "summary": "调蓝期（硫酸铝），做花后追肥",
+      "detail": "【autumn期养护要点】\n调蓝期（硫酸铝），做花后追肥\n\n日常养护\n光照：半阴，避开正午直射\n浇水：保持土壤湿润，夏季每天浇水\n土壤：酸性土（调蓝关键），pH 5.0-5.5\n施肥：春季花前用高磷肥，花后追均衡肥\n修剪：花后立即修剪，花下第2对芽点上方1cm处剪\n\n博主经验\n调蓝秘诀：土壤pH<5.5 + 硫酸铝灌根，2周一次；北方种植需春化处理，华南不用；无尽夏可以新老枝开花，其他品种只开老枝",
+      "tags": [
+        "耐热",
+        "需春化",
+        "需遮阴"
+      ]
+    },
+    {
+      "plant": "菊花",
+      "season": "autumn",
+      "region": "general",
+      "month": 9,
+      "type": "bloom",
+      "summary": "秋天的主角！品种千千万，盆栽选矮生型，地栽才能气场全开",
+      "detail": "秋天的主角！品种千千万，盆栽选矮生型，地栽才能气场全开",
+      "tags": [
+        "耐热"
+      ]
+    },
+    {
+      "plant": "蓝莓",
+      "season": "autumn",
+      "region": "general",
+      "month": 9,
+      "type": "care",
+      "summary": "花芽分化期，施磷钾肥",
+      "detail": "【autumn期养护要点】\n花芽分化期，施磷钾肥\n\n日常养护\n光照：全日照，最少6小时\n浇水：保持湿润但排水好，忌积水\n土壤：强酸性土 pH 4.5-5.0，用进口泥炭+松针\n施肥：花期用硼肥，果期用钾肥\n修剪：3年后开始修剪，剪老枝留新枝\n\n博主经验\n必须种2个不同品种才能授粉结果；新手推荐：奥尼尔+薄雾组合；南方需选低冷量品种（如绿宝石）",
+      "tags": [
+        "新手友好"
+      ]
+    },
+    {
+      "plant": "蝴蝶兰",
+      "season": "autumn",
+      "region": "general",
+      "month": 9,
+      "type": "bloom",
+      "summary": "年宵花之王！花期长达3-6个月，复花秘籍在于秋季低温刺激",
+      "detail": "年宵花之王！花期长达3-6个月，复花秘籍在于秋季低温刺激",
+      "tags": [
+        "花期长",
+        "年宵花"
+      ]
+    },
+    {
+      "plant": "铁线莲",
+      "season": "autumn",
+      "region": "general",
+      "month": 9,
+      "type": "care",
+      "summary": "部分品种秋花",
+      "detail": "【autumn期养护要点】\n部分品种秋花\n\n日常养护\n光照：全日照，根部遮阴\n浇水：保持湿润，夏季早晚浇水\n土壤：偏碱性，pH 6.5-7.5\n施肥：春季氮肥，花期磷肥\n修剪：按修剪类型（1/2/3类）区别对待\n\n博主经验\n经典配搭：铁线莲+月季（一个上墙一个灌丛）；新手推荐：如梦、啤酒、水晶喷泉；枯萎病：一旦发现立即剪到健康部分以下",
+      "tags": [
+        "新手友好",
+        "藤本",
+        "需遮阴"
+      ]
+    },
+    {
+      "plant": "多肉",
+      "season": "winter",
+      "region": "general",
+      "month": 12,
+      "type": "care",
+      "summary": "休眠期，室内保暖，停水",
+      "detail": "【winter期养护要点】\n休眠期，室内保暖，停水\n\n日常养护\n光照：全日照，缺光会徒长\n浇水：干透浇透，宁干勿湿\n土壤：颗粒土为主，泥炭占比≤30%\n施肥：薄肥勤施，稀释到1/4浓度\n修剪：撸底叶促爆侧，砍头繁殖\n\n博主经验\n南方度夏是最大挑战，遮阴+通风；配土颗粒土占比60-70%；新手推荐：吉娃娃、白牡丹、冬美人",
+      "tags": [
+        "新手友好",
+        "需遮阴"
+      ]
+    },
+    {
+      "plant": "月季",
+      "season": "winter",
+      "region": "general",
+      "month": 12,
+      "type": "care",
+      "summary": "落叶休眠，清枯枝落叶防病",
+      "detail": "【winter期养护要点】\n落叶休眠，清枯枝落叶防病\n\n日常养护\n光照：全日照，最少6小时直射光\n浇水：见干见湿，避免积水\n土壤：疏松透气，腐叶土+园土+河沙 3:2:1\n施肥：花期前用高磷肥，日常用均衡肥\n修剪：早春重剪，花后轻剪促复花\n\n博主经验\n阳台首选微型月季，大花月季占地太大；通风是防病第一要素；新手推荐：果汁阳台、金丝雀、躲躲藏藏",
+      "tags": [
+        "新手友好"
+      ]
+    },
+    {
+      "plant": "朱顶红",
+      "season": "winter",
+      "region": "general",
+      "month": 12,
+      "type": "care",
+      "summary": "强制休眠（放冰箱5°C两周）再重新上盆催花",
+      "detail": "【winter期养护要点】\n强制休眠（放冰箱5°C两周）再重新上盆催花\n\n日常养护\n光照：明亮散射光，避免正午暴晒\n浇水：生长期保持湿润，休眠期控水\n土壤：疏松透气，腐叶土+园土+珍珠岩\n施肥：花前磷钾肥为主\n修剪：花后剪花梗不剪叶\n\n博主经验\n花球越大花越多，选球径≥28cm的；新手推荐：花叶双绝、阿弗雷；进口球（南非/荷兰）比国产球开花质量好",
+      "tags": [
+        "耐热",
+        "球根",
+        "新手友好"
+      ]
+    },
+    {
+      "plant": "杜鹃",
+      "season": "winter",
+      "region": "general",
+      "month": 12,
+      "type": "bloom",
+      "summary": "年宵花经典！花开满盆不见叶，品种花色超级丰富",
+      "detail": "年宵花经典！花开满盆不见叶，品种花色超级丰富",
+      "tags": [
+        "年宵花"
+      ]
+    },
+    {
+      "plant": "绣球",
+      "season": "winter",
+      "region": "general",
+      "month": 12,
+      "type": "care",
+      "summary": "休眠期，控水保暖，华东地区可露天越冬",
+      "detail": "【winter期养护要点】\n休眠期，控水保暖，华东地区可露天越冬\n\n日常养护\n光照：半阴，避开正午直射\n浇水：保持土壤湿润，夏季每天浇水\n土壤：酸性土（调蓝关键），pH 5.0-5.5\n施肥：春季花前用高磷肥，花后追均衡肥\n修剪：花后立即修剪，花下第2对芽点上方1cm处剪\n\n博主经验\n调蓝秘诀：土壤pH<5.5 + 硫酸铝灌根，2周一次；北方种植需春化处理，华南不用；无尽夏可以新老枝开花，其他品种只开老枝",
+      "tags": [
+        "耐热",
+        "需春化",
+        "需遮阴"
+      ]
+    },
+    {
+      "plant": "蓝莓",
+      "season": "winter",
+      "region": "general",
+      "month": 12,
+      "type": "care",
+      "summary": "需冷量积累（300-500小时），华东可露天",
+      "detail": "【winter期养护要点】\n需冷量积累（300-500小时），华东可露天\n\n日常养护\n光照：全日照，最少6小时\n浇水：保持湿润但排水好，忌积水\n土壤：强酸性土 pH 4.5-5.0，用进口泥炭+松针\n施肥：花期用硼肥，果期用钾肥\n修剪：3年后开始修剪，剪老枝留新枝\n\n博主经验\n必须种2个不同品种才能授粉结果；新手推荐：奥尼尔+薄雾组合；南方需选低冷量品种（如绿宝石）",
+      "tags": [
+        "新手友好"
+      ]
+    },
+    {
+      "plant": "铁线莲",
+      "season": "winter",
+      "region": "general",
+      "month": 12,
+      "type": "care",
+      "summary": "重剪品种（3类）贴地剪",
+      "detail": "【winter期养护要点】\n重剪品种（3类）贴地剪\n\n日常养护\n光照：全日照，根部遮阴\n浇水：保持湿润，夏季早晚浇水\n土壤：偏碱性，pH 6.5-7.5\n施肥：春季氮肥，花期磷肥\n修剪：按修剪类型（1/2/3类）区别对待\n\n博主经验\n经典配搭：铁线莲+月季（一个上墙一个灌丛）；新手推荐：如梦、啤酒、水晶喷泉；枯萎病：一旦发现立即剪到健康部分以下",
+      "tags": [
+        "新手友好",
+        "藤本",
+        "需遮阴"
+      ]
+    },
+    {
+      "plant": "长寿花",
+      "season": "winter",
+      "region": "general",
+      "month": 12,
+      "type": "bloom",
+      "summary": "冬天开满盆，花期半年",
+      "detail": "冬天开满盆，花期半年",
+      "tags": []
+    }
+  ]
+}

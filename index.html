@@ -71,7 +71,11 @@ body {
 }
 .top-bar h1 { font-size: var(--fs-h1); font-weight: 600; }
 .top-bar p { font-size: var(--fs-sm); opacity: 0.8; margin-top: 2px; }
-.top-bar .content-entry { display:inline-block; margin-top:10px; padding:6px 16px; border-radius:20px; border:1px solid rgba(255,255,255,0.4); color:#fff; font-size:13px; text-decoration:none; font-weight:500; }
+.top-bar .content-entry-card { display:flex; align-items:center; gap:8px; margin-top:10px; padding:8px 12px; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2); border-radius:8px; color:#fff; text-decoration:none; font-size:13px; transition:background 0.2s; }
+.top-bar .content-entry-card:active { background:rgba(255,255,255,0.2); }
+.top-bar .content-entry-icon { font-size:16px; }
+.top-bar .content-entry-text { flex:1; }
+.top-bar .content-entry-arrow { opacity:0.6; font-size:12px; }
 
 /* ===== 第一层：今日快照 ===== */
 .snap {
@@ -844,7 +848,11 @@ body {
 <div class="top-bar">
   <h1>那与航 · 今日优选</h1>
   <p>2026-06-09 · 📏 身材参考：159cm/103斤 · S码</p>
-  <a class="content-entry" href="content.html">📋 运营内容</a>
+  <a class="content-entry-card" href="content.html">
+    <span class="content-entry-icon">🌿</span>
+    <span class="content-entry-text" id="contentEntryText">四时植语 · 6月华东可种推荐</span>
+    <span class="content-entry-arrow">→</span>
+  </a>
 </div>
 
 
@@ -37860,6 +37868,27 @@ body {
 <script>
 var PW = "0b19b2bfc66338b60fc3402d3b0e2b56fc376fa3d859f33e797e9c90cb08f5ff";
 var KEY = "push_20260609";
+
+// 四时植语入口卡片 — 动态文案
+(function(){
+  var m = new Date().getMonth()+1;
+  var texts = {
+    3:'四时植语 · '+m+'月春播清单',
+    4:'四时植语 · '+m+'月春播清单',
+    5:'四时植语 · '+m+'月春播清单',
+    6:'四时植语 · '+m+'月华东可种推荐',
+    7:'四时植语 · '+m+'月华东可种推荐',
+    8:'四时植语 · '+m+'月华东可种推荐',
+    9:'四时植语 · '+m+'月秋植指南',
+    10:'四时植语 · '+m+'月秋植指南',
+    11:'四时植语 · '+m+'月秋植指南',
+    12:'四时植语 · '+m+'月越冬养护',
+    1:'四时植语 · '+m+'月越冬养护',
+    2:'四时植语 · '+m+'月越冬养护'
+  };
+  var el = document.getElementById('contentEntryText');
+  if (el && texts[m]) el.textContent = texts[m];
+})();
 </script>
 
 <script>/**

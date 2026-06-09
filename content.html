@@ -2,255 +2,68 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes,viewport-fit=cover">
-<title>那与航 · 运营内容</title>
-<style>
-:root {
-  --c-bg: #ffffff; --c-surf: #f9fbf7; --c-surf-alt: #f5f2ec;
-  --c-text: #2c2c2a; --c-text-s: #5f5e5a; --c-text-h: #8b8680;
-  --c-line: #e8e6dc; --c-line-h: #d3d1c7;
-  --c-brand: #2d5a3d; --c-accent: #639922; --c-accent-lt: #eaf3de;
-  --c-warn: #ba7517; --c-warn-lt: #faeeda; --c-danger: #a32d2d;
-  --font: -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",system-ui,sans-serif;
-  --r: 12px; --r-sm: 8px;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:var(--font); font-size:15px; background:var(--c-surf); color:var(--c-text); line-height:1.5; max-width:500px; margin:0 auto; min-height:100dvh; -webkit-text-size-adjust:100%; }
-
-/* Top nav */
-.nav { background:linear-gradient(135deg,var(--c-brand),var(--c-accent)); color:#fff; padding:12px 16px; display:flex; justify-content:space-between; align-items:center; }
-.nav .back { color:#fff; font-size:13px; text-decoration:none; }
-.nav h1 { font-size:16px; font-weight:600; }
-
-/* Tab bar */
-.tabs { display:flex; background:var(--c-bg); border-bottom:1px solid var(--c-line); position:sticky; top:0; z-index:10; }
-.tab { flex:1; text-align:center; padding:10px; font-size:13px; font-weight:500; color:var(--c-text-s); border:none; background:none; cursor:pointer; border-bottom:2px solid transparent; font-family:var(--font); }
-.tab.on { color:var(--c-accent); border-bottom-color:var(--c-accent); }
-
-.sec { padding:12px 16px; }
-
-/* Season pills */
-.season-pills { display:flex; gap:6px; margin-bottom:10px; }
-.season-pill { flex:1; padding:6px; border-radius:var(--r-sm); border:1px solid var(--c-line); background:var(--c-bg); font-size:12px; text-align:center; cursor:pointer; font-family:var(--font); color:var(--c-text-s); }
-.season-pill.on { border-color:var(--c-accent); background:var(--c-accent-lt); color:var(--c-brand); font-weight:600; }
-
-/* Region pills */
-.region-pills { display:flex; gap:6px; margin-bottom:10px; }
-.region-pill { flex:1; padding:6px; border-radius:var(--r-sm); border:1px solid var(--c-line); background:var(--c-bg); font-size:12px; text-align:center; cursor:pointer; font-family:var(--font); color:var(--c-text-s); }
-.region-pill.on { border-color:var(--c-accent); background:var(--c-accent-lt); color:var(--c-brand); font-weight:600; }
-
-/* Search */
-.search-box { margin-bottom:10px; }
-.search-box input { width:100%; padding:8px 12px; border-radius:var(--r-sm); border:1px solid var(--c-line); font-size:14px; font-family:var(--font); background:var(--c-bg); }
-.search-results { margin-top:6px; display:flex; flex-wrap:wrap; gap:4px; }
-.search-results button { padding:4px 10px; border-radius:12px; border:1px solid var(--c-line); background:var(--c-bg); font-size:12px; cursor:pointer; font-family:var(--font); color:var(--c-text-s); }
-.search-results button:hover,.search-results button.on { border-color:var(--c-accent); background:var(--c-accent-lt); color:var(--c-brand); }
-
-/* Content card */
-.card { background:var(--c-bg); border-radius:var(--r); padding:16px; box-shadow:0 1px 3px rgba(0,0,0,0.04); margin-bottom:10px; border:1px solid var(--c-line); }
-.card-hd { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
-.card-title { font-size:15px; font-weight:600; }
-.btn-copy { background:var(--c-accent); color:#fff; border:none; padding:5px 12px; border-radius:16px; font-size:12px; cursor:pointer; font-family:var(--font); font-weight:500; }
-.btn-copy:active { opacity:0.8; }
-.card-body { font-size:14px; line-height:1.7; color:var(--c-text); white-space:pre-line; padding:10px; background:#FAFAFA; border-radius:var(--r-sm); }
-.loading { text-align:center; padding:40px; color:var(--c-text-h); }
-
-/* Calendar days */
-.cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:4px; margin-bottom:8px; }
-.cal-cell { padding:6px 2px; text-align:center; border-radius:6px; background:var(--c-bg); border:1px solid var(--c-line); font-size:11px; cursor:pointer; }
-.cal-cell.today { border-color:var(--c-accent); background:var(--c-accent-lt); font-weight:600; }
-.cal-cell.active { border-color:var(--c-line-h); }
-.cal-cell.dow { font-size:10px; color:var(--c-text-h); border:none; background:none; }
-.cal-month { font-size:13px; font-weight:600; text-align:center; padding:4px 0; }
-
-.empty { text-align:center; padding:30px; color:var(--c-text-h); font-size:13px; }
-</style>
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes">
+<title>那与航 · 四时植语</title>
+<link rel="stylesheet" href="content.css">
 </head>
 <body>
 
-<div class="nav">
-    <a class="back" href="index.html">← 推品</a>
-    <h1>运营内容</h1>
-    <span style="font-size:12px;opacity:0.7">养护日历</span>
-</div>
+<!-- Top Bar -->
+<header class="top-bar">
+  <a href="index.html">← 推品</a>
+  <div>
+    <h1>四时植语</h1>
+    <div class="sub">种植养护 · 四季日历</div>
+  </div>
+</header>
 
-<div class="tabs">
-    <button class="tab on" onclick="switchTab('calendar')">📅 日历</button>
-    <button class="tab" onclick="switchTab('care')">🪴 养护</button>
-</div>
+<div class="page-grid">
 
-<!-- Calendar Tab -->
-<div id="tab-calendar" class="sec">
-    <div id="calContent">
-        <div class="loading">加载中...</div>
+<!-- 左栏：筛选面板 -->
+<aside class="page-left">
+  <!-- Season Cards -->
+  <nav class="season-strip" id="seasonStrip"></nav>
+
+  <!-- Month Section -->
+  <section class="month-section" id="monthSection">
+    <div class="month-header">
+      <span class="current" id="monthLabel"></span>
+      <div class="nav-arrows">
+        <button id="prevMonth" aria-label="上一月">◀</button>
+        <button id="nextMonth" aria-label="下一月">▶</button>
+      </div>
     </div>
-</div>
+    <div class="mini-cal" id="miniCal"></div>
+    <div class="month-tabs" id="monthTabs"></div>
+  </section>
 
-<!-- Care Tab -->
-<div id="tab-care" class="sec" style="display:none">
-    <div class="season-pills">
-        <button class="season-pill on" data-s="spring">🌸 春</button>
-        <button class="season-pill" data-s="summer">☀️ 夏</button>
-        <button class="season-pill" data-s="autumn">🍂 秋</button>
-        <button class="season-pill" data-s="winter">❄️ 冬</button>
-    </div>
-    <div class="region-pills">
-        <button class="region-pill on" data-r="general">🌍 通用</button>
-        <button class="region-pill" data-r="east">📍 华东</button>
-        <button class="region-pill" data-r="southwest">📍 西南</button>
-        <button class="region-pill" data-r="south">📍 华南</button>
-    </div>
-    <div class="search-box">
-        <input id="careSearch" placeholder="搜索品种..." oninput="filterVarieties()">
-        <div class="search-results" id="careResults"></div>
-    </div>
-    <div id="careContent"><div class="empty">选一个品种查看养护内容</div></div>
-</div>
+  <!-- Region Chips -->
+  <nav class="region-strip" id="regionStrip"></nav>
 
-<script>
-// ========== Data ==========
-let allVarieties = [];
-let currentSeason = "summer";
-let currentRegion = "general";
-let currentVariety = null;
+  <!-- Section Context -->
+  <div class="section-ctx">
+    <span class="ctx-label" id="ctxLabel"></span>
+    <span class="ctx-count" id="ctxCount"></span>
+  </div>
+</aside>
 
-async function loadIndex() {
-    try {
-        const resp = await fetch("content/index.json");
-        const data = await resp.json();
-        allVarieties = data.varieties || [];
-        renderCareSearch();
-        renderCalendar();
-    } catch(e) {
-        document.getElementById("calContent").innerHTML = '<div class="empty">数据加载失败，请先生成内容库</div>';
-    }
-}
+<!-- 右栏：内容区 -->
+<main class="page-right">
+  <!-- Search -->
+  <div class="search-bar">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="搜索品种名称...">
+  </div>
 
-// ========== Calendar ==========
-const DAY_CN = ["日","一","二","三","四","五","六"];
-const RHYTHM = {"spring":[1,2,3,4,5],"summer":[1,3,5],"autumn":[1,3,4,5],"winter":[1,3,5]};
+  <!-- Content Cards -->
+  <div class="content-area" id="contentArea"></div>
+</main>
 
-function renderCalendar() {
-    const now = new Date();
-    const m = now.getMonth();
-    const y = now.getFullYear();
-    const season = m >= 2 && m <= 4 ? "spring" : m >= 5 && m <= 7 ? "summer" : m >= 8 && m <= 10 ? "autumn" : "winter";
-    const active = RHYTHM[season];
-    const firstDay = new Date(y, m, 1).getDay();
-    const daysInMonth = new Date(y, m+1, 0).getDate();
-    const TODAY = now.getDate();
+</div><!-- /.page-grid -->
 
-    let html = '<div class="cal-month">' + (m+1) + '月 · ' + {"spring":"🌸春","summer":"☀️夏","autumn":"🍂秋","winter":"❄️冬"}[season] + '</div>';
-    html += '<div class="cal-grid">';
-    DAY_CN.forEach(d => { html += '<div class="cal-cell dow">' + d + '</div>'; });
-    for (let i = 0; i < firstDay; i++) html += '<div class="cal-cell" style="visibility:hidden"></div>';
-    for (let d = 1; d <= daysInMonth; d++) {
-        const dow = new Date(y, m, d).getDay();
-        const isActive = active.includes(dow);
-        const isToday = d === TODAY;
-        const cls = isToday ? "today" : (isActive ? "active" : "");
-        html += '<div class="cal-cell ' + cls + '">' + d + '<br><span style="font-size:9px;opacity:0.5">' + (isActive ? "📝" : "") + '</span></div>';
-    }
-    html += '</div>';
-    html += '<div style="font-size:11px;color:var(--c-text-h);padding:4px 0">📝 = 内容发布日 | 点击日期查看当天养护建议</div>';
-    document.getElementById("calContent").innerHTML = html;
-}
+<!-- Toast -->
+<div class="toast" id="toast"></div>
 
-// ========== Tabs ==========
-function switchTab(t) {
-    document.getElementById("tab-calendar").style.display = t === "calendar" ? "" : "none";
-    document.getElementById("tab-care").style.display = t === "care" ? "" : "none";
-    document.querySelectorAll(".tab").forEach(el => el.classList.toggle("on", el.textContent.includes(t === "calendar" ? "日历" : "养护")));
-}
-
-// ========== Season & Region ==========
-document.querySelectorAll(".season-pill").forEach(b => {
-    b.addEventListener("click", function() {
-        document.querySelectorAll(".season-pill").forEach(x => x.classList.remove("on"));
-        this.classList.add("on");
-        currentSeason = this.dataset.s;
-        if (currentVariety) loadContent(currentVariety);
-        else document.getElementById("careContent").innerHTML = '<div class="empty">选一个品种查看养护内容</div>';
-    });
-});
-document.querySelectorAll(".region-pill").forEach(b => {
-    b.addEventListener("click", function() {
-        document.querySelectorAll(".region-pill").forEach(x => x.classList.remove("on"));
-        this.classList.add("on");
-        currentRegion = this.dataset.r;
-        if (currentVariety) loadContent(currentVariety);
-        else document.getElementById("careContent").innerHTML = '<div class="empty">选一个品种查看养护内容</div>';
-    });
-});
-
-// ========== Search ==========
-function renderCareSearch(filter = "") {
-    let html = "";
-    const filtered = filter ? allVarieties.filter(v => v.includes(filter)) : allVarieties.slice(0, 30);
-    filtered.forEach(v => {
-        html += '<button onclick="selectVariety(\'' + v.replace(/'/g, "\\'") + '\')">' + v + '</button>';
-    });
-    if (filter && filtered.length === 0) html = '<span style="font-size:12px;color:var(--c-text-h)">未找到</span>';
-    document.getElementById("careResults").innerHTML = html;
-}
-
-function filterVarieties() {
-    const q = document.getElementById("careSearch").value.trim();
-    renderCareSearch(q);
-}
-
-function selectVariety(v) {
-    currentVariety = v;
-    document.getElementById("careSearch").value = v;
-    // Highlight
-    document.querySelectorAll("#careResults button").forEach(b => {
-        b.classList.toggle("on", b.textContent === v);
-    });
-    loadContent(v);
-}
-
-// ========== Load Content ==========
-async function loadContent(variety) {
-    const filename = variety.replace(/\//g, "_") + "_" + currentSeason + "_" + currentRegion + ".json";
-    document.getElementById("careContent").innerHTML = '<div class="loading">加载中...</div>';
-    try {
-        const resp = await fetch("content/care/" + filename);
-        if (!resp.ok) throw new Error("not found");
-        const data = await resp.json();
-        renderCard(data);
-    } catch(e) {
-        document.getElementById("careContent").innerHTML = '<div class="empty">暂无此组合的内容数据</div>';
-    }
-}
-
-function renderCard(data) {
-    const text = data.text || "";
-    const html = `
-    <div class="card">
-        <div class="card-hd">
-            <div class="card-title">${data.variety} · ${data.season}季 · ${data.region}</div>
-            <button class="btn-copy" onclick="copyText(this)">📋 复制</button>
-        </div>
-        <div class="card-body">${text.replace(/\n/g, "<br>")}</div>
-    </div>`;
-    document.getElementById("careContent").innerHTML = html;
-}
-
-function copyText(btn) {
-    const body = btn.parentElement.nextElementSibling;
-    const text = body.innerText;
-    navigator.clipboard.writeText(text).then(() => {
-        btn.textContent = "✅"; setTimeout(() => btn.textContent = "📋 复制", 2000);
-    }).catch(() => {
-        const el = document.createElement("textarea");
-        el.value = text; document.body.appendChild(el); el.select();
-        document.execCommand("copy"); document.body.removeChild(el);
-        alert("已复制");
-    });
-}
-
-// ========== Init ==========
-loadIndex();
-</script>
+<script src="content.js"></script>
 </body>
 </html>
