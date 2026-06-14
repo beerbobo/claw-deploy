@@ -397,6 +397,96 @@ body {
   font-weight: 500;
 }
 
+/* ===== v3 Rich Content 新区 ===== */
+
+/* 🎯 为什么现在该做 — 钩子行 */
+.card-why-now {
+  margin: 8px 0 6px;
+  padding: 8px 12px;
+  font-size: var(--fs-meta);
+  font-weight: 600;
+  color: var(--c-brand);
+  background: var(--c-accent-lt);
+  border-radius: var(--r-sm);
+  line-height: 1.5;
+}
+
+/* 🏠🌳🌱 场景标签条 */
+.card-scenarios {
+  margin: 8px 0 6px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.scenario-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: var(--fs-xs);
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--c-line);
+  color: var(--c-text-s);
+  cursor: default;
+  transition: all 0.15s;
+}
+
+/* ⚠️ 避坑提醒 */
+.card-pitfalls {
+  margin: 6px 0;
+  padding: 8px 12px;
+  font-size: var(--fs-sm);
+  color: var(--c-warn);
+  background: var(--c-warn-lt);
+  border-radius: var(--r-sm);
+  border-left: 3px solid var(--c-warn);
+  line-height: 1.6;
+}
+.card-pitfalls .pitfall-item {
+  display: block;
+}
+.card-pitfalls .pitfall-item + .pitfall-item {
+  margin-top: 4px;
+}
+
+/* 💬 大大经验 */
+.card-bigbrother {
+  margin: 6px 0;
+  padding: 8px 12px;
+  font-size: var(--fs-sm);
+  color: var(--c-text-s);
+  background: var(--c-surf);
+  border-radius: var(--r-sm);
+  line-height: 1.6;
+  border-left: 3px solid var(--c-accent);
+}
+
+/* 🔗 相关好物 */
+.card-products {
+  margin: 8px 0 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: var(--fs-xs);
+}
+.card-products .prod-label {
+  color: var(--c-text-h);
+  font-size: var(--fs-xs);
+  flex-shrink: 0;
+}
+.card-products .prod-kw {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--c-accent);
+  color: var(--c-accent);
+  font-size: var(--fs-xs);
+  white-space: nowrap;
+}
+
 .plant-card .copy-btn {
   display: none;
   margin-top: 10px;
