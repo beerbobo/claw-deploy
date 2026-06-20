@@ -1,9 +1,11 @@
 /**
- * 四时植语 · 交互逻辑 v2
+ * 四时植语 · 交互逻辑 v4
  * Layer 4 · 显示层：fetch(content-data.json) → 渲染
  * 
- * 数据流: fetch → filter → group → render
- * 状态: { season, region, month, selectedDay, search }
+ * v4 变更：适配 build_content_data.py v4 数据格式
+ *   - region(string) → regions(array)   c.regions.includes()
+ *   - type(string)  → types(array)      c.types.includes()
+ *   - scenario_*    → scenarios(dict)   item.scenarios.{封闭阳台,开放阳台,露台,花园,新手}
  */
 
 // ===== State =====
@@ -194,7 +196,7 @@ function renderContent() {
   let items = DATA.content.filter(c => {
     return c.season === state.season
       && (!state.selectedDay || (c.day || c.month) === state.selectedDay)
-      && (c.region === state.region || c.region === 'general')
+      && ((c.regions || []).includes(state.region) || (c.regions || []).includes('general'))
       && (!state.search || c.plant.includes(state.search)
         || c.summary.includes(state.search) || c.detail.includes(state.search));
   });
@@ -213,7 +215,7 @@ function renderContent() {
 
   let html = '';
   for (const [type, meta] of Object.entries(groups)) {
-    const groupItems = items.filter(i => i.type === type);
+    const groupItems = items.filter(i => (i.types || []).includes(type));
     if (groupItems.length === 0) continue;
     html += `<div class="content-group">
       <div class="content-group-title">${meta.icon} ${meta.label} · ${groupItems.length}种</div>`;
@@ -235,12 +237,19 @@ function renderContent() {
       // 标签行（原有）
       html += `<div class="card-tags">${(item.tags||[]).map(t => `<span class="card-tag">${escapeHTML(t)}</span>`).join('')}</div>`;
 
-      // v3 新增：🏠🌳🌱 场景建议
-      if (item.scenario_balcony || item.scenario_garden || item.scenario_beginner) {
+      // v4 新增：scene 场景建议（适配 scenarios dict）
+      if (item.scenarios && Object.keys(item.scenarios).length > 0) {
         html += '<div class="card-scenarios">';
-        if (item.scenario_balcony) html += `<span class="scenario-tag">🏠 ${escapeHTML(item.scenario_balcony)}</span>`;
-        if (item.scenario_garden) html += `<span class="scenario-tag">🌳 ${escapeHTML(item.scenario_garden)}</span>`;
-        if (item.scenario_beginner) html += `<span class="scenario-tag">🌱 ${escapeHTML(item.scenario_beginner)}</span>`;
+        const sceneEmoji = {
+          '封闭阳台': '🏠', '开放阳台': '🏠',
+          '露台': '🌳', '花园': '🌳',
+          '新手': '🌱'
+        };
+        for (const [scene, info] of Object.entries(item.scenarios)) {
+          const emoji = sceneEmoji[scene] || '📍';
+          const suitIcon = info.suit === '✅' ? '✅' : info.suit === '⚠️' ? '⚠️' : '';
+          html += '<span class="scenario-tag">' + emoji + ' ' + suitIcon + ' ' + escapeHTML(info.text) + '</span>';
+        }
         html += '</div>';
       }
 
